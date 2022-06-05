@@ -24,16 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
 
-        >
-
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/goal">
-
-        </ImageView>
-    </FrameLayout>
+        />
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:weightSum="12">
+
+        <LinearLayout
+            style="@style/parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham"
+                android:text="Register"
+                android:textColor="#ffffff"
+                android:textSize="32sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/calibri"
+        android:gravity="center"
+        android:text="We pursue a relaxed chating experience"
+        android:textColor="#9affffff"
+        android:textSize="10sp"
+        tools:ignore="SmallSp" />
+
+    <LinearLayout
+        android:id="@+id/testPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonPanel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:paddingVertical="20dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/layout_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="#898a8c"
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="USERNAME">
+        </TextView>
+
+        <EditText
+            android:id="@+id/uesrname_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/layout_textbox"
+            android:fontFamily="@font/calibri"
+            android:padding="8dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="#898a8c"
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="PASSWORD">
+        </TextView>
+
+        <EditText
+            android:id="@+id/password_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/layout_textbox"
+            android:fontFamily="@font/calibri"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="#898a8c"
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="VERIFY PASSWORD">
+        </TextView>
+
+
+        <EditText
+            android:id="@+id/verifyPassword_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/layout_textbox"
+            android:fontFamily="@font/calibri"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="#898a8c"
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="DISPLAY NAME">
+        </TextView>
+
+        <EditText
+            android:id="@+id/displayName_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/layout_textbox"
+            android:fontFamily="@font/calibri"
+            android:padding="10dp"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="#898a8c"
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="Already have an account?
+Sign in">
+
+        </TextView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_button"
+            android:layout_marginTop="20dp"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:fontFamily="@font/calibri"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
