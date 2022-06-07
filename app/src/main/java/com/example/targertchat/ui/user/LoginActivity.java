@@ -1,12 +1,14 @@
-package com.example.targertchat;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.targertchat.ui.user;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.targertchat.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -17,9 +19,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginButton = (Button) findViewById(R.id.login_button);
         loginButton.setOnClickListener((View v)-> checkDataEntered());
-
-
-
     }
 
     protected boolean checkDataEntered() {

@@ -1,15 +1,17 @@
-package com.example.targertchat;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.targertchat.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.targertchat.R;
+
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIMER = 3000;
+    private static int SPLASH_TIMER = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="config_item" type="id" />
+    <item name="img_icon" type="id" />
+    <item name="refreshLayout" type="id" />
+</resources>

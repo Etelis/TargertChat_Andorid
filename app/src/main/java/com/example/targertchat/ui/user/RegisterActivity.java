@@ -1,4 +1,4 @@
-package com.example.targertchat;
+package com.example.targertchat.ui.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.targertchat.R;
+import com.example.targertchat.data.model.User;
+import com.example.targertchat.data.repositories.UsersRepository;
+import com.example.targertchat.data.utils.PostRegisterUser;
+import com.example.targertchat.ui.contacts.ContactsActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText userNameEdt, passwordEdt, verifyPasswordEdt, displayNameEdt;
     private Button registerBtn;
+    private UsersRepository usersRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +32,11 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEdt = findViewById(R.id.password_text);
         verifyPasswordEdt = findViewById(R.id.verifyPassword_text);
         displayNameEdt = findViewById(R.id.displayName_text);
+        registerBtn = findViewById(R.id.registerBtn);
+
+        UserViewModel userViewModel = new ViewModelProvider
+                (this, new UserViewModelFactory()).get(UserViewModel.class);
+
 
         registerBtn.setOnClickListener((View v)-> {
                 // on below line we are getting data from our edit text.
@@ -37,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.equals(password, verifyPassword)) {
+                if (!TextUtils.equals(password, verifyPassword)) {
                     Toast.makeText(RegisterActivity.this, "Passwords are not matching!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -46,9 +60,16 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Display Name is required!", Toast.LENGTH_SHORT).show();
                 }
 
-                // calling a method to register a user.
-                //registerUser(userName, password);
+                PostRegisterUser registerUser = new PostRegisterUser(userName, password, displayName, null);
+                LiveData<User> user = userViewModel.register(registerUser);
+
+                Intent intent = new Intent(this, ContactsActivity.class);
+
+                startActivity(intent);
+
+                finish();
             });
         }
+
+
     }
-}

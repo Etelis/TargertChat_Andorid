@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -127,11 +127,12 @@
         android:id="@+id/buttonPanel">
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/blue_me"
+            android:background="@drawable/button"
             android:fontFamily="@font/calibri"
             android:text="Register"
             android:textAllCaps="false"
@@ -139,10 +140,11 @@
             android:textColor="#96ffffff"
             android:textSize="16sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:background="@drawable/button"
             android:fontFamily="@font/calibri"
             android:text="Login"
             android:textAllCaps="false"
