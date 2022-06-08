@@ -3,7 +3,7 @@ import android.app.Application;
 
 import com.example.targertchat.data.model.LocalDatabase;
 import com.example.targertchat.data.remote.ContactsApiManager;
-import com.example.targertchat.data.remote.SessionManager;
+import com.example.targertchat.data.utils.SessionManager;
 import com.example.targertchat.data.remote.UsersApiManager;
 
 public class MainApplication extends Application {
@@ -15,7 +15,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        sessionManager = new SessionManager(this);
+        sessionManager = SessionManager.getInstance(this);
         usersApiManager = UsersApiManager.getInstance();
         contactsApiManager = ContactsApiManager.getInstance();
         LocalDatabase.initiaizeDB(this);

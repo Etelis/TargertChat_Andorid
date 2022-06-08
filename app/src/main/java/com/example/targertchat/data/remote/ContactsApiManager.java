@@ -4,6 +4,7 @@ import com.example.targertchat.MainApplication;
 import com.example.targertchat.data.model.Contact;
 import com.example.targertchat.data.model.IContactDao;
 import com.example.targertchat.data.utils.ContactResponse;
+import com.example.targertchat.data.utils.SessionManager;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ContactsApiManager {
     private static SessionManager sessionManager;
 
     private ContactsApiManager() {
-        service = RetrofitService.CreateContactApi();
+        service = RetrofitService.createService(IContactsApi.class);
         sessionManager = MainApplication.sessionManager;
     }
 

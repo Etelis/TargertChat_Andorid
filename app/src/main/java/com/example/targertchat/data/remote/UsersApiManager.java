@@ -1,8 +1,8 @@
 package com.example.targertchat.data.remote;
 
+import com.example.targertchat.data.model.User;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.data.utils.PostRegisterUser;
-import com.example.targertchat.data.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,7 +12,7 @@ public class UsersApiManager {
     private static UsersApiManager apiManager;
 
     private UsersApiManager() {
-        service = RetrofitService.CreateUserApi();
+        service = RetrofitService.createService(IUsersApi.class);
     }
 
     public static UsersApiManager getInstance() {

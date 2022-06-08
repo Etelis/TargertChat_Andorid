@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
 import com.example.targertchat.data.model.User;
-import com.example.targertchat.data.remote.SessionManager;
 import com.example.targertchat.data.remote.UsersApiManager;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.data.utils.PostRegisterUser;
+import com.example.targertchat.data.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,7 +17,6 @@ public class UsersRepository {
 
     private static volatile UsersRepository instance;
     private final UsersApiManager usersApiManager;
-    private final MutableLiveData<User> user = new MutableLiveData<>();
     private final SessionManager sessionManager;
 
 
@@ -33,49 +32,49 @@ public class UsersRepository {
         return instance;
     }
 
-    public MutableLiveData<User> login(PostLoginUser loginUser){
+    public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
         this.usersApiManager.login(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     User body = response.body();
-                    user.setValue(body);
-                    sessionManager.saveAuthToken(user.getValue().getToken());
-                } else{
-                    user.postValue(null);
+                    sessionManager.saveSession(body);
+                    checkLoggedIn.postValue(true);
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                user.postValue(null);
+                sessionManager.removeSession();
+                checkLoggedIn.postValue(false);
             }
         }, loginUser);
-
-        return user;
     }
 
-    public MutableLiveData<User> register(PostRegisterUser registerUser){
+    public void register(PostRegisterUser registerUser, MutableLiveData<Boolean> checkLoggedIn) {
         this.usersApiManager.register(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     String token = response.body();
                     User body = registerUser.CreateUserWithToken(token);
-                    sessionManager.saveAuthToken(token);
-                    user.setValue(body);
-                } else{
-                    user.postValue(null);
+                    sessionManager.saveSession(body);
+                    checkLoggedIn.postValue(true);
                 }
+                else
+                    checkLoggedIn.postValue(false);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                user.postValue(null);
+                sessionManager.removeSession();
+                checkLoggedIn.postValue(false);
             }
         }, registerUser);
-
-        return user;
     }
 
+    public boolean isSessionLoggedIn(){
+        User user = sessionManager.fetchSession();
+        return user != null;
+    }
 }

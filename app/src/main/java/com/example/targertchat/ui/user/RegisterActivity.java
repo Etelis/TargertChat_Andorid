@@ -9,11 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.targertchat.R;
-import com.example.targertchat.data.model.User;
 import com.example.targertchat.data.repositories.UsersRepository;
 import com.example.targertchat.data.utils.PostRegisterUser;
 import com.example.targertchat.ui.contacts.ContactsActivity;
@@ -61,15 +59,16 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 PostRegisterUser registerUser = new PostRegisterUser(userName, password, displayName, null);
-                LiveData<User> user = userViewModel.register(registerUser);
-
-                Intent intent = new Intent(this, ContactsActivity.class);
-
-                startActivity(intent);
-
-                finish();
+                userViewModel.register(registerUser);
+                userViewModel.isLoggedIn().observe(this, answerBoolean -> {
+                if (answerBoolean) {
+                    Intent intent = new Intent(this, ContactsActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Either user exists or server is not responsive.", Toast.LENGTH_SHORT).show();
+                }
+            });
             });
         }
-
-
     }
