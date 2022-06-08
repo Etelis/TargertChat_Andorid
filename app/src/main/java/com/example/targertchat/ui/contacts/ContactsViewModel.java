@@ -1,6 +1,7 @@
 package com.example.targertchat.ui.contacts;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.targertchat.data.model.Contact;
@@ -13,9 +14,11 @@ public class ContactsViewModel extends ViewModel {
 
     private final ContactsRepository contactsRepository;
     private LiveData<List<Contact>> contacts;
+    private MutableLiveData<Boolean> checkContactSubmited;
 
     public ContactsViewModel(ContactsRepository contactsRepository) {
         this.contactsRepository = contactsRepository;
+        checkContactSubmited = new MutableLiveData<Boolean>();
         contacts = contactsRepository.getContacts();
     }
 
@@ -28,7 +31,11 @@ public class ContactsViewModel extends ViewModel {
 //    }
 
     public void addContact(ContactResponse contactResponse) {
-        contactsRepository.addContact(contactResponse);
+        contactsRepository.addContact(contactResponse, checkContactSubmited);
+    }
+
+    public LiveData<Boolean> isContactSubmited() {
+        return checkContactSubmited;
     }
 
     public void reload (){

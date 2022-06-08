@@ -61,8 +61,8 @@ public class ContactsRepository {
 //        contactListData.getValue()
 //    }
 
-    public void addContact (ContactResponse postContact){
-        this.contactsApiManager.addContact(postContact);
+    public void addContact(ContactResponse postContact, MutableLiveData<Boolean> checkContactSubmited){
+        this.contactsApiManager.addContact(postContact, checkContactSubmited);
     }
 
     public void reload(){

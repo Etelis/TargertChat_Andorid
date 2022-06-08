@@ -15,6 +15,7 @@
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
     <color name="dark_space">#182030</color>
+    <color name="dark_space_box">#B5182030</color>
     <color name="primaryTextColor">#00a5ff</color>
     <color name="loginBkColor">#f0f0f0</color>
     <color name="colorPrimary">#075e55</color>

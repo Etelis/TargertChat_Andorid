@@ -1,5 +1,7 @@
 package com.example.targertchat.data.remote;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.targertchat.MainApplication;
 import com.example.targertchat.data.model.Contact;
 import com.example.targertchat.data.model.IContactDao;
@@ -50,19 +52,20 @@ public class ContactsApiManager {
         });
     }
 
-    public void addContact(ContactResponse contactResponse){
+    public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmited){
         Call<Void> addContactCall = service.addContact(contactResponse, "Bearer " + sessionManager.fetchAuthToken());
         addContactCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
-                    //TODO error
-                }
+                if (response.isSuccessful())
+                    checkContactSubmited.postValue(true);
+                else
+                    checkContactSubmited.postValue(false);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                //TODO errors
+                checkContactSubmited.postValue(false);
             }
         });
     }

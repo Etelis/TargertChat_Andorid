@@ -3,7 +3,6 @@ package com.example.targertchat.ui.user;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
                 (this, new UserViewModelFactory()).get(UserViewModel.class);
 
 
-        registerBtn.setOnClickListener((View v)-> {
+        registerBtn.setOnClickListener(v -> {
                 // on below line we are getting data from our edit text.
                 String userName = userNameEdt.getText().toString();
                 String password = passwordEdt.getText().toString();
