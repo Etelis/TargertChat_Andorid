@@ -35,12 +35,20 @@ public class SessionManager {
     public String fetchAuthToken(){
         Gson gson = new Gson();
         String json =  prefs.getString(USER_PREFS,null);
+
+        if (json == null)
+            return null;
+
         return gson.fromJson(json, User.class).getToken();
     }
 
     public User fetchSession (){
         Gson gson = new Gson();
         String json =  prefs.getString(USER_PREFS,null);
+
+        if (json == null)
+            return null;
+
         return gson.fromJson(json, User.class);
     }
 
