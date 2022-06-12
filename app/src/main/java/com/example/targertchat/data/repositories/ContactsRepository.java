@@ -9,7 +9,6 @@ import com.example.targertchat.data.model.LocalDatabase;
 import com.example.targertchat.data.remote.ContactsApiManager;
 import com.example.targertchat.data.utils.ContactResponse;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,14 +17,12 @@ public class ContactsRepository {
     private final ContactsApiManager contactsApiManager;
     private final ContactListData contactListData;
     private final IContactDao dao;
-    private final List<Contact> contactsAPI;
 
 
     private ContactsRepository(ContactsApiManager contactsApiManager) {
         this.contactsApiManager = contactsApiManager;
         LocalDatabase db = LocalDatabase.getInstance();
         dao = db.contactDao();
-        contactsAPI = new ArrayList<Contact>();
         contactListData = new ContactListData();
     }
 
@@ -67,5 +64,8 @@ public class ContactsRepository {
 
     public void reload(){
         contactsApiManager.getContacts(dao);
+        new Thread(() -> {
+            contactListData.postValue(dao.getAllContacts());
+        }).start();
     }
 }

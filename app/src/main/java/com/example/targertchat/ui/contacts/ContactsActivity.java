@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.targertchat.R;
@@ -37,11 +36,6 @@ public class ContactsActivity extends AppCompatActivity {
         contactsViewModel = new ViewModelProvider
                 (this, new ContactsViewModelFactory()).get(ContactsViewModel.class);
 
-        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swiper);
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            contactsViewModel.reload();
-        });
-
         viewPager2 = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tablayout);
 
@@ -59,13 +53,12 @@ public class ContactsActivity extends AppCompatActivity {
                             tab.setText("Camera");
                             tab.setIcon(getResources().getDrawable(R.drawable.ic_action_camera));
                             break;
-
                         }
                     }
                 });
         tabLayoutMediator.attach();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ContactsActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ContactsActivity.this, R.style.dialog_theme);
 
         View view = getLayoutInflater().inflate(R.layout.add_contact_dialog, null);
         EditText contactUName = view.findViewById(R.id.contact_username);

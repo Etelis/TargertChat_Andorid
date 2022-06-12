@@ -34,15 +34,6 @@ public class ContactFragment extends Fragment {
     public ContactFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static ContactFragment newInstance(int columnCount) {
-        ContactFragment fragment = new ContactFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,11 +65,13 @@ public class ContactFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
             viewModel.getContacts().observe(getViewLifecycleOwner(), adapter::setContacts);
-        }
 
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            viewModel.reload();
-        });
+            swipeRefreshLayout.setOnRefreshListener(() -> {
+                adapter.clear();
+                viewModel.reload();
+                swipeRefreshLayout.setRefreshing(false);
+            });
+        }
 
         return view;
     }

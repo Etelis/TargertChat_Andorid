@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.contacts.ContactDialogActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.contacts.ContactsActivity"
             android:exported="false" />
         <activity

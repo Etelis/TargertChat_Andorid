@@ -46,15 +46,12 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             tvTime = itemView.findViewById(R.id.tvTime);
             contactLayoutContainer = itemView.findViewById(R.id.chat_row_container);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(new Intent(context, ContactDialogActivity.class));
-                    i.putExtra("url", contacts.get(getAdapterPosition()).getProfilePic());
-                    ActivityOptions options = ActivityOptions
-                            .makeSceneTransitionAnimation((Activity)context, view, "transition");
-                    context.startActivity(i, options.toBundle());
-                }
+            imageView.setOnClickListener(view -> {
+                Intent i = new Intent(new Intent(context, ContactDialogActivity.class));
+                i.putExtra("url", contacts.get(getAdapterPosition()).getProfilePic());
+                ActivityOptions options = ActivityOptions
+                        .makeSceneTransitionAnimation((Activity)context, view, "transition");
+                context.startActivity(i, options.toBundle());
             });
         }
     }
@@ -87,6 +84,16 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     public void setContacts(List<Contact> s){
         contacts = s;
+        notifyDataSetChanged();
+    }
+
+    public void clear(){
+        contacts.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Contact> s){
+        contacts.addAll(s);
         notifyDataSetChanged();
     }
 

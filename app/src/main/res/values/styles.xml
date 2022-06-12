@@ -45,5 +45,11 @@
         <item name="iconColor">@color/colorAccent</item>
     </style>
 
+    <style name="dialog_theme" parent="android:style/Theme.Dialog">
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 </resources>
