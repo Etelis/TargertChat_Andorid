@@ -68,17 +68,10 @@ public class ContactFragment extends Fragment {
 
             viewModel.getContacts().observe(getViewLifecycleOwner(), adapter::setContacts);
 
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    adapter.clear();
-                    viewModel.reload();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override public void run() {
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    }, 4000); // Delay in millis
-                }
+            swipeRefreshLayout.setOnRefreshListener(() -> {
+                adapter.clear();
+                viewModel.reload();
+                new Handler().postDelayed(() -> swipeRefreshLayout.setRefreshing(false), 3000); // Delay in millis
             });
 
 
