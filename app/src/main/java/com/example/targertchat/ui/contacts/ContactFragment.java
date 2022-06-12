@@ -2,6 +2,7 @@ package com.example.targertchat.ui.contacts;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,8 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.contact_item_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.list);
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view;
+        SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.refreshLayout);
+
 
         // Set the adapter
         if (recyclerView != null) {
@@ -66,11 +68,21 @@ public class ContactFragment extends Fragment {
 
             viewModel.getContacts().observe(getViewLifecycleOwner(), adapter::setContacts);
 
-            swipeRefreshLayout.setOnRefreshListener(() -> {
-                adapter.clear();
-                viewModel.reload();
-                swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    adapter.clear();
+                    viewModel.reload();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override public void run() {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }, 4000); // Delay in millis
+                }
             });
+
+
+
         }
 
         return view;
