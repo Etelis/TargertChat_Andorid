@@ -14,10 +14,10 @@
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout-v28/activity_register.xml" value="0.228" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chats.xml" value="0.21875" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contact_dialog.xml" value="0.2625053441641727" />
-        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contacts.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contacts.xml" value="0.1" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_login.xml" value="0.34063745019920316" />
-        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_main.xml" value="0.1661807580174927" />
-        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_register.xml" value="0.2920634920634921" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/add_contact_dialog.xml" value="0.2391102873030584" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/contact_item.xml" value="0.398876404494382" />
@@ -25,7 +25,9 @@
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/contact_layout.xml" value="0.2597402597402597" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/fragment_add_contact_dialog.xml" value="0.2539546814878153" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/list_item_layout.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/message_item_list.xml" value="0.17229585292860197" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/profile_options.xml" value="0.2941427960666952" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/sent_message_item.xml" value="0.13039760581445062" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/menu/mainscreen_menu.xml" value="0.2941427960666952" />
       </map>
     </option>

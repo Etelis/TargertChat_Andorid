@@ -10,7 +10,7 @@
     <FrameLayout
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageView"
@@ -89,22 +89,23 @@
 
     <LinearLayout
         android:id="@+id/buttonPanel"
+        android:paddingVertical="20dp"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/layout_bg"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingVertical="20dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:fontStyle="normal"
-            android:text="USERNAME"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"></TextView>
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="USERNAME">
+        </TextView>
 
         <EditText
             android:id="@+id/uesrname_text"
@@ -120,11 +121,12 @@
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:fontStyle="normal"
-            android:text="PASSWORD"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"></TextView>
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="PASSWORD">
+        </TextView>
 
         <EditText
             android:id="@+id/password_text"
@@ -134,20 +136,21 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
-            android:inputType="textPassword"
             android:padding="10dp"
+            android:inputType="textPassword"
             android:textAllCaps="false"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="TextContrastCheck"/>
 
 
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:fontStyle="normal"
-            android:text="VERIFY PASSWORD"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"></TextView>
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="VERIFY PASSWORD">
+        </TextView>
 
 
         <EditText
@@ -158,18 +161,19 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
-            android:inputType="textPassword"
             android:padding="10dp"
+            android:inputType="textPassword"
             android:textAllCaps="false" />
 
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:fontStyle="normal"
-            android:text="DISPLAY NAME"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"></TextView>
+            android:textSize="12dp"
+            android:fontStyle="normal"
+            android:text="DISPLAY NAME">
+        </TextView>
 
         <EditText
             android:id="@+id/displayName_text"
@@ -183,28 +187,29 @@
             android:textAllCaps="false" />
 
         <TextView
+            android:id="@+id/to_login"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:fontStyle="normal"
-            android:text="Already have an account?
-Sign in"
+            android:text="Already have an account? Sign in"
             android:textAlignment="viewStart"
-            android:textColor="#898a8c"
-            android:textSize="12dp">
-
+            android:textColor="@color/blue_me"
+            android:textSize="15dp"
+            android:clickable="true">
         </TextView>
+
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerBtn"
+            android:layout_marginTop="20dp"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:fontFamily="@font/calibri"
             android:text="Register"
-            android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
