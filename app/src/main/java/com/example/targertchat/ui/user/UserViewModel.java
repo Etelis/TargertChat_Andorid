@@ -11,18 +11,17 @@ import com.example.targertchat.data.utils.PostRegisterUser;
 public class UserViewModel extends ViewModel {
 
     private final UsersRepository usersRepository;
-    private MutableLiveData<Boolean> checkSessionLoggedIn;
-    private MutableLiveData<Boolean> checkLoggedIn;
+    private final MutableLiveData<Boolean> checkSessionLoggedIn;
+    private final MutableLiveData<Boolean> checkLoggedIn;
 
     public UserViewModel(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
-        checkLoggedIn = new MutableLiveData<Boolean>();
-        checkSessionLoggedIn = new MutableLiveData<Boolean>();
+        checkLoggedIn = new MutableLiveData<>();
+        checkSessionLoggedIn = new MutableLiveData<>();
     }
 
     public void login(PostLoginUser loginUser) {
         usersRepository.login(loginUser, checkLoggedIn);
-
     }
 
     public void register(PostRegisterUser registerUser) {
@@ -34,7 +33,10 @@ public class UserViewModel extends ViewModel {
     }
 
     public LiveData<Boolean> isSessionLoggedIn() {
-        checkSessionLoggedIn.setValue(usersRepository.isSessionLoggedIn());
         return checkSessionLoggedIn;
+    }
+
+    public void checkSession(){
+        usersRepository.isSessionLoggedIn(checkSessionLoggedIn);
     }
 }

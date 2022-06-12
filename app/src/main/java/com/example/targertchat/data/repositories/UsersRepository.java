@@ -3,7 +3,6 @@ package com.example.targertchat.data.repositories;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
-import com.example.targertchat.data.model.User;
 import com.example.targertchat.data.remote.UsersApiManager;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.data.utils.PostRegisterUser;
@@ -36,9 +35,7 @@ public class UsersRepository {
         this.usersApiManager.register(registerUser, checkLoggedIn);
     }
 
-    public boolean isSessionLoggedIn(){
-        this.usersApiManager.verifyToken();
-        User user = sessionManager.fetchSession();
-        return user != null;
+    public void isSessionLoggedIn(MutableLiveData<Boolean> checkSessionLoggedIn){
+        this.usersApiManager.verifyToken(checkSessionLoggedIn);
     }
 }

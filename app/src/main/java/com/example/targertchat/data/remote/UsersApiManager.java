@@ -30,7 +30,7 @@ public class UsersApiManager {
         return apiManager;
     }
 
-    public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn){
+    public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
         Call<User> loginCall = service.login(loginUser);
         loginCall.enqueue(new Callback<User>() {
             @Override
@@ -39,6 +39,10 @@ public class UsersApiManager {
                     User body = response.body();
                     sessionManager.saveSession(body);
                     checkLoggedIn.postValue(true);
+                }
+                else {
+                    sessionManager.removeSession();
+                    checkLoggedIn.postValue(false);
                 }
             }
 
@@ -57,8 +61,8 @@ public class UsersApiManager {
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.isSuccessful()) {
                     String token = response.body();
-                    User body = registerUser.CreateUserWithToken(token);
-                    sessionManager.saveSession(body);
+                    User newUser = registerUser.CreateUserWithToken(token);
+                    sessionManager.saveSession(newUser);
                     checkLoggedIn.postValue(true);
                 }
                 else {
@@ -75,22 +79,33 @@ public class UsersApiManager {
         });
     }
 
-    public void verifyToken (){
+    public void verifyToken(MutableLiveData<Boolean> checkSessionLoggedIn){
         Call<User> tokenCall = service.token("Bearer " + sessionManager.fetchAuthToken());
         tokenCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse( Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
+                    String token = sessionManager.fetchAuthToken();
                     User body = response.body();
+
+                    if (body != null) {
+                        body.setToken(token);
+                    }
+
                     sessionManager.saveSession(body);
+                    checkSessionLoggedIn.postValue(true);
                 }
-                else
+
+                if(response.code()>= 400 && response.code() < 599){
                     sessionManager.removeSession();
+                    checkSessionLoggedIn.postValue(false);
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<User> call, Throwable t) {
                 sessionManager.removeSession();
+                checkSessionLoggedIn.postValue(false);
             }
         });
     }

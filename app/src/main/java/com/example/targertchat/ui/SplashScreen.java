@@ -15,7 +15,7 @@ import com.example.targertchat.ui.user.UserViewModelFactory;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIMER = 1500;
+    private static int SPLASH_TIMER = 3000;
     private UserViewModel userViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +24,11 @@ public class SplashScreen extends AppCompatActivity {
         userViewModel = new ViewModelProvider
                 (this, new UserViewModelFactory()).get(UserViewModel.class);
 
+        userViewModel.checkSession();
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                checkIfUserIsAuthenticated();
-            }
-        }, SPLASH_TIMER);
+        new Handler().postDelayed(this::checkIfUserIsAuthenticated, SPLASH_TIMER);
 
     }
 

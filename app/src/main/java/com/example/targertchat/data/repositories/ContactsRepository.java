@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ContactsRepository {
+
     private static volatile ContactsRepository instance;
     private final ContactsApiManager contactsApiManager;
     private final ContactListData contactListData;
@@ -26,11 +27,11 @@ public class ContactsRepository {
         contactListData = new ContactListData();
     }
 
-    class ContactListData extends MutableLiveData<List<Contact>>{
+    class ContactListData extends MutableLiveData<List<Contact>> {
         public ContactListData() {
             super();
             reload();
-            setValue(new LinkedList<Contact>());
+            setValue(new LinkedList<>());
         }
 
         @Override
@@ -53,13 +54,12 @@ public class ContactsRepository {
         return contactListData;
     }
 
-
-//    public LiveData<Contact> getContactByID(String contactID){
-//        contactListData.getValue()
+//    public LiveData<Contact> getContactByID(String contactID) {
+//        return this.contactsApiManager.getContactByID(String contactID);
 //    }
 
-    public void addContact(ContactResponse postContact, MutableLiveData<Boolean> checkContactSubmited){
-        this.contactsApiManager.addContact(postContact, checkContactSubmited);
+    public void addContact(ContactResponse postContact, MutableLiveData<Boolean> checkContactSubmitted){
+        this.contactsApiManager.addContact(postContact, checkContactSubmitted);
     }
 
     public void reload(){

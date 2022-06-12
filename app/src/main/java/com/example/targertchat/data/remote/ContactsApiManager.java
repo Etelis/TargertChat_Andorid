@@ -52,20 +52,20 @@ public class ContactsApiManager {
         });
     }
 
-    public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmited){
+    public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted){
         Call<Void> addContactCall = service.addContact(contactResponse, "Bearer " + sessionManager.fetchAuthToken());
         addContactCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful())
-                    checkContactSubmited.postValue(true);
+                    checkContactSubmitted.postValue(true);
                 else
-                    checkContactSubmited.postValue(false);
+                    checkContactSubmitted.postValue(false);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                checkContactSubmited.postValue(false);
+                checkContactSubmitted.postValue(false);
             }
         });
     }

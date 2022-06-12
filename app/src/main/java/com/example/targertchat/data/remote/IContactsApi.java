@@ -10,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface IContactsApi {
     @GET("Contacts")
@@ -17,4 +18,7 @@ public interface IContactsApi {
 
     @POST("Contacts")
     Call<Void> addContact(@Body ContactResponse contactResponse, @Header("Authorization") String token);
+
+    @GET("Contacts/{id}")
+    Call<Contact> getContactById(@Path("id") String id, @Header("Authorization") String token);
 }

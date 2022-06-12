@@ -29,4 +29,20 @@ public class User {
     public String getPhoto() {
         return photo;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
