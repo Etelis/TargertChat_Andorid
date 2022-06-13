@@ -21,6 +21,9 @@
             android:name=".ui.contacts.ContactDialogActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.chat.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.contacts.ContactsActivity"
             android:exported="false" />
         <activity

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/list"
+        android:id="@+id/message_list"
         android:name="com.example.targertchat.ui.contacts.ContactFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,5 +15,5 @@
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".ui.contacts.ContactFragment"
-        tools:listitem="@layout/contact_item" />
+        tools:listitem="" />
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

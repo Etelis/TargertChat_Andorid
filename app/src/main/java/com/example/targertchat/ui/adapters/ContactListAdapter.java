@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.targertchat.R;
 import com.example.targertchat.data.model.Contact;
+import com.example.targertchat.ui.chat.ChatActivity;
 import com.example.targertchat.ui.contacts.ContactDialogActivity;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     private Context context;
     private final LayoutInflater mInflater;
     private List<Contact> contacts;
+
     public ContactListAdapter(Context context){
         mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -35,6 +37,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         private final TextView tvTitle;
         private final TextView tvDetails;
         private final TextView tvTime;
+        private final TextView tvId;
         private final ImageView imageView;
         private final RelativeLayout contactLayoutContainer;
 
@@ -44,7 +47,16 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             tvDetails = itemView.findViewById(R.id.tvLastMsg);
             imageView = itemView.findViewById(R.id.profile_image);
             tvTime = itemView.findViewById(R.id.tvTime);
+            tvId = itemView.findViewById(R.id.contact_id);
             contactLayoutContainer = itemView.findViewById(R.id.chat_row_container);
+
+            contactLayoutContainer.setOnClickListener(view -> {
+                Intent i = new Intent(new Intent(context, ChatActivity.class));
+                i.putExtra("id",tvId.getText().toString());
+                ActivityOptions options = ActivityOptions
+                        .makeSceneTransitionAnimation((Activity)context, view, "transition");
+                context.startActivity(i, options.toBundle());
+            });
 
             imageView.setOnClickListener(view -> {
                 Intent i = new Intent(new Intent(context, ContactDialogActivity.class));
@@ -79,6 +91,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             holder.tvTitle.setText(current.getContactName());
             holder.tvDetails.setText(current.getLastMessage());
             holder.tvTime.setText(current.getLastSeen());
+            holder.tvId.setText(current.getContactID());
         }
     }
 

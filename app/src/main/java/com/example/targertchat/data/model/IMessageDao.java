@@ -28,6 +28,4 @@ public interface IMessageDao {
     @Delete
     void delete(Message... messages);
 
-    @Query("DELETE FROM Message")
-    public void clear();
 }

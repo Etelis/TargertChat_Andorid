@@ -59,13 +59,11 @@ public class ContactsActivity extends AppCompatActivity {
         tabLayoutMediator.attach();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ContactsActivity.this, R.style.dialog_theme);
-
         View view = getLayoutInflater().inflate(R.layout.add_contact_dialog, null);
         EditText contactUName = view.findViewById(R.id.contact_username);
         EditText contactName = view.findViewById(R.id.contact_name);
         EditText contactServer = view.findViewById(R.id.contact_server);
         Button submitContact = view.findViewById(R.id.submit_contact);
-
         submitContact.setOnClickListener(v -> {
             String userName = contactUName.getText().toString();
             String name = contactName.getText().toString();
@@ -76,7 +74,6 @@ public class ContactsActivity extends AppCompatActivity {
                 Toast.makeText(ContactsActivity.this, "Fields cannot stay empty!", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             ContactResponse contactResponse = new ContactResponse(userName, name, server);
             contactsViewModel.addContact(contactResponse);
             contactsViewModel.isContactSubmited().observe(this, answerBoolean -> {
@@ -87,10 +84,10 @@ public class ContactsActivity extends AppCompatActivity {
                 }
             });
         });
-
         builder.setView(view);
         dialog = builder.create();
         addContactBtn.setOnClickListener(v -> dialog.show());
+
 
     }
 }

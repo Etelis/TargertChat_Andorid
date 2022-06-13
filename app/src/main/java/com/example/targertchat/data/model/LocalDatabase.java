@@ -5,13 +5,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Contact.class}, version = 3)
+@Database(entities = {Contact.class, Message.class}, version = 5)
 public abstract class LocalDatabase extends RoomDatabase{
     private static volatile LocalDatabase instance;
     private static final String DB_NAME = "LOCAL_DB";
 
     public abstract IContactDao contactDao();
-//    public abstract IMessageDao messageDao();
+    public abstract IMessageDao messageDao();
 
     public static void initiaizeDB(Context context) {
         if (instance == null)
