@@ -38,7 +38,7 @@ public class ContactsRepository {
         protected void onActive() {
             super.onActive();
             new Thread(() -> {
-                contactListData.postValue(dao.getAllContacts());
+                postValue(dao.getAllContacts());
             }).start();
         }
     }

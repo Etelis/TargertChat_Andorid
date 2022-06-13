@@ -13,12 +13,12 @@ import java.util.List;
 public class ContactsViewModel extends ViewModel {
 
     private final ContactsRepository contactsRepository;
-    private LiveData<List<Contact>> contacts;
-    private MutableLiveData<Boolean> checkContactSubmited;
+    private final LiveData<List<Contact>> contacts;
+    private final MutableLiveData<Boolean> checkContactSubmited;
 
     public ContactsViewModel(ContactsRepository contactsRepository) {
         this.contactsRepository = contactsRepository;
-        checkContactSubmited = new MutableLiveData<Boolean>();
+        checkContactSubmited = new MutableLiveData<>();
         contacts = contactsRepository.getContacts();
     }
 

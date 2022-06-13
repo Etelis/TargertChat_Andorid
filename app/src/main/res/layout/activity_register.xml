@@ -138,6 +138,7 @@
             android:fontFamily="@font/calibri"
             android:padding="10dp"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             tools:ignore="TextContrastCheck"/>
 
@@ -162,6 +163,7 @@
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
             android:padding="10dp"
+            android:textColor="@color/white"
             android:inputType="textPassword"
             android:textAllCaps="false" />
 
@@ -184,6 +186,7 @@
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
             android:padding="10dp"
+            android:textColor="@color/white"
             android:textAllCaps="false" />
 
         <TextView

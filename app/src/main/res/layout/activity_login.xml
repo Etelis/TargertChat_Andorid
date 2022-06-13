@@ -136,6 +136,7 @@
             android:fontFamily="@font/calibri"
             android:inputType="textPassword"
             android:padding="10dp"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             tools:ignore="TextContrastCheck" />
 

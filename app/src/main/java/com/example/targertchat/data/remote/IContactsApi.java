@@ -21,4 +21,5 @@ public interface IContactsApi {
 
     @GET("Contacts/{id}")
     Call<Contact> getContactById(@Path("id") String id, @Header("Authorization") String token);
+
 }
