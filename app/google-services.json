@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "62579187560",
+    "project_id": "targertchat",
+    "storage_bucket": "targertchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62579187560:android:91e7e52da9a1603f4700dd",
+        "android_client_info": {
+          "package_name": "com.example.targertchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62579187560-qd374k2pbfhft6en4auo796or2m5p81r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_X-n3KonEwySwFr42OVONrmOVjPle6vg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62579187560-qd374k2pbfhft6en4auo796or2m5p81r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

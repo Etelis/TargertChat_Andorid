@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
 import com.example.targertchat.data.model.User;
+import com.example.targertchat.data.utils.NotificationToken;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.data.utils.PostRegisterUser;
 import com.example.targertchat.data.utils.SessionManager;
@@ -50,6 +51,19 @@ public class UsersApiManager {
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 sessionManager.removeSession();
                 checkLoggedIn.postValue(false);
+            }
+        });
+    }
+
+    public void notifyToken(NotificationToken notificationToken){
+        Call<Void> notifyCall = service.registerDevice("Bearer " + sessionManager.fetchAuthToken(), notificationToken);
+        notifyCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
             }
         });
     }

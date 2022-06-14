@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.targertchat.R;
+import com.example.targertchat.data.utils.NotificationToken;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.ui.contacts.ContactsActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -49,8 +51,14 @@ public class LoginActivity extends AppCompatActivity {
 
             PostLoginUser loginUser = new PostLoginUser(username.getText().toString(), password.getText().toString());
             userViewModel.login(loginUser);
+
             userViewModel.isLoggedIn().observe(this, answerBoolean -> {
                 if (answerBoolean) {
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginActivity.this, instanceIdResult -> {
+                        String token = instanceIdResult.getToken();
+                        NotificationToken notificationToken = new NotificationToken(token);
+                        userViewModel.notifyToken(notificationToken);
+                    });
                     Intent intent = new Intent(this, ContactsActivity.class);
                     startActivity(intent);
                     finish();
