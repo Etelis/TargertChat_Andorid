@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.targertchat.R;
+import com.example.targertchat.data.utils.NotificationToken;
 import com.example.targertchat.ui.contacts.ContactsActivity;
 import com.example.targertchat.ui.user.UserViewModel;
 import com.example.targertchat.ui.user.UserViewModelFactory;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -36,6 +38,11 @@ public class SplashScreen extends AppCompatActivity {
         userViewModel.isSessionLoggedIn().observe(this, aBoolean -> {
             Intent mainIntent;
             if (aBoolean) {
+                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SplashScreen.this, instanceIdResult -> {
+                    String token = instanceIdResult.getToken();
+                    NotificationToken notificationToken = new NotificationToken(token);
+                    userViewModel.notifyToken(notificationToken);
+                });
                 mainIntent = new Intent(SplashScreen.this, ContactsActivity.class);
             } else {
                 mainIntent = new Intent(SplashScreen.this, MainActivity.class);

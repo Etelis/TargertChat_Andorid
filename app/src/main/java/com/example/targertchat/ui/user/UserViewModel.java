@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.targertchat.data.repositories.UsersRepository;
+import com.example.targertchat.data.utils.NotificationToken;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.data.utils.PostRegisterUser;
 
@@ -18,6 +19,10 @@ public class UserViewModel extends ViewModel {
         this.usersRepository = usersRepository;
         checkLoggedIn = new MutableLiveData<>();
         checkSessionLoggedIn = new MutableLiveData<>();
+    }
+
+    public void notifyToken(NotificationToken notificationToken){
+        usersRepository.notifyToken(notificationToken);
     }
 
     public void login(PostLoginUser loginUser) {

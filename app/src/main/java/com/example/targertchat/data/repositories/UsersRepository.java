@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
 import com.example.targertchat.data.remote.UsersApiManager;
+import com.example.targertchat.data.utils.NotificationToken;
 import com.example.targertchat.data.utils.PostLoginUser;
 import com.example.targertchat.data.utils.PostRegisterUser;
 import com.example.targertchat.data.utils.SessionManager;
@@ -29,6 +30,10 @@ public class UsersRepository {
 
     public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
         this.usersApiManager.login(loginUser, checkLoggedIn);
+    }
+
+    public void notifyToken(NotificationToken notificationToken){
+        this.usersApiManager.notifyToken(notificationToken);
     }
 
     public void register(PostRegisterUser registerUser, MutableLiveData<Boolean> checkLoggedIn) {
