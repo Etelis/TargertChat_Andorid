@@ -5,7 +5,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Contact.class, Message.class}, version = 5)
+@Database(entities = {Contact.class, Message.class}, version = 7)
 public abstract class LocalDatabase extends RoomDatabase{
     private static volatile LocalDatabase instance;
     private static final String DB_NAME = "LOCAL_DB";
@@ -13,7 +13,7 @@ public abstract class LocalDatabase extends RoomDatabase{
     public abstract IContactDao contactDao();
     public abstract IMessageDao messageDao();
 
-    public static void initiaizeDB(Context context) {
+    public static void initializeDB(Context context) {
         if (instance == null)
             instance = Room.databaseBuilder(context.getApplicationContext(), LocalDatabase.class, DB_NAME)
                     .fallbackToDestructiveMigration()

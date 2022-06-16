@@ -11,10 +11,10 @@ public class Message {
     private String created;
     private String sent;
 
-    public Message(int id, String content, String date, String contactID, String sent) {
+    public Message(int id, String content, String created, String sent) {
         this.id = id;
         this.content = content;
-        this.created = date;
+        this.created = created;
         this.sent = sent;
     }
 

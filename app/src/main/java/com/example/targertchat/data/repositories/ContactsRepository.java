@@ -2,7 +2,6 @@ package com.example.targertchat.data.repositories;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.targertchat.data.model.Contact;
 import com.example.targertchat.data.model.IContactDao;
 import com.example.targertchat.data.model.LocalDatabase;

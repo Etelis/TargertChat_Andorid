@@ -1,20 +1,20 @@
 package com.example.targertchat.ui.contacts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.targertchat.R;
 import com.example.targertchat.data.utils.ContactResponse;
 import com.example.targertchat.ui.adapters.FragmentAdapter;
+import com.example.targertchat.ui.settings.SettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -26,12 +26,20 @@ public class ContactsActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private TabLayout tabLayout;
     private ContactsViewModel contactsViewModel;
+    private FloatingActionButton settingsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
         addContactBtn = findViewById(R.id.addContact);
+        settingsBtn = findViewById(R.id.settings_btn);
+
+
+        settingsBtn.setOnClickListener((View v) -> {
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        });
 
         contactsViewModel = new ViewModelProvider
                 (this, new ContactsViewModelFactory()).get(ContactsViewModel.class);
@@ -76,7 +84,7 @@ public class ContactsActivity extends AppCompatActivity {
             }
             ContactResponse contactResponse = new ContactResponse(userName, name, server);
             contactsViewModel.addContact(contactResponse);
-            contactsViewModel.isContactSubmited().observe(this, answerBoolean -> {
+            contactsViewModel.isContactSubmitted().observe(this, answerBoolean -> {
                 if (answerBoolean) {
                     dialog.dismiss();
                 } else {
@@ -88,6 +96,6 @@ public class ContactsActivity extends AppCompatActivity {
         dialog = builder.create();
         addContactBtn.setOnClickListener(v -> dialog.show());
 
-
     }
+
 }

@@ -14,11 +14,11 @@ public class ContactsViewModel extends ViewModel {
 
     private final ContactsRepository contactsRepository;
     private final LiveData<List<Contact>> contacts;
-    private final MutableLiveData<Boolean> checkContactSubmited;
+    private final MutableLiveData<Boolean> checkContactSubmitted;
 
     public ContactsViewModel(ContactsRepository contactsRepository) {
         this.contactsRepository = contactsRepository;
-        checkContactSubmited = new MutableLiveData<>();
+        checkContactSubmitted = new MutableLiveData<>();
         contacts = contactsRepository.getContacts();
     }
 
@@ -26,16 +26,13 @@ public class ContactsViewModel extends ViewModel {
         return contacts;
     }
 
-//    public LiveData<Contact> getContactByID(String id) {
-//        return contactsRepository.getContactByID(id);
-//    }
 
     public void addContact(ContactResponse contactResponse) {
-        contactsRepository.addContact(contactResponse, checkContactSubmited);
+        contactsRepository.addContact(contactResponse, checkContactSubmitted);
     }
 
-    public LiveData<Boolean> isContactSubmited() {
-        return checkContactSubmited;
+    public LiveData<Boolean> isContactSubmitted() {
+        return checkContactSubmitted;
     }
 
     public void reload (){

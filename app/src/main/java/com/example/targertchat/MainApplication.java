@@ -18,7 +18,6 @@ public class MainApplication extends Application {
         sessionManager = SessionManager.getInstance(this);
         usersApiManager = UsersApiManager.getInstance();
         contactsApiManager = ContactsApiManager.getInstance();
-        LocalDatabase.initiaizeDB(this);
-
+        LocalDatabase.initializeDB(this);
     }
 }

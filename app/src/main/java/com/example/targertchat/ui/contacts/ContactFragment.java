@@ -6,14 +6,12 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.example.targertchat.R;
 import com.example.targertchat.ui.adapters.ContactListAdapter;
 
@@ -73,11 +71,7 @@ public class ContactFragment extends Fragment {
                 viewModel.reload();
                 new Handler().postDelayed(() -> swipeRefreshLayout.setRefreshing(false), 3000); // Delay in millis
             });
-
-
-
         }
-
         return view;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.targertchat.data.model;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,10 +12,10 @@ import java.util.List;
 public interface IMessageDao {
 
     @Query("SELECT * FROM Message")
-    List<Contact> getAllMessages();
+    LiveData<List<Message>> getAllMessages();
 
     @Query("SELECT * FROM Message WHERE id = :identity")
-    Contact getMessageById(int identity);
+    Message getMessageById(int identity);
 
     @Insert
     void insert(Message... message);
@@ -28,4 +29,6 @@ public interface IMessageDao {
     @Delete
     void delete(Message... messages);
 
+    @Query("DELETE FROM Message")
+    public void clear();
 }

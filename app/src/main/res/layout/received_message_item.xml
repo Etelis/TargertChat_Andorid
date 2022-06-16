@@ -8,32 +8,36 @@
     android:orientation="vertical"
     android:layout_margin="8dp"
     android:layout_gravity="left"
+    android:gravity="left"
     tools:ignore="RtlHardcoded"
     android:minWidth="5dp">
 
     <TextView
+        android:gravity="left"
+        android:id="@+id/received_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/received_text"
+        android:layout_alignParentRight="@+id/received_text"
+        android:padding="8dp"
+        android:text="04:50 Am Jun 2022 am "
+        android:textColor="@android:color/darker_gray"
+        android:textSize="8dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:gravity="left"
         android:minWidth="50dp"
-        android:id="@+id/lblMessage_text"
+        android:id="@+id/received_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="Whats app bitach"
+        android:text="bitach"
         android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/lblMessage_Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblMessage_text"
-        android:layout_alignEnd="@+id/lblMessage_text"
-        android:layout_alignRight="@+id/lblMessage_text"
-        android:padding="8dp"
-        android:text="04:50 Am"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="8dp"
-        android:textStyle="italic" />
+
 
 </RelativeLayout>
