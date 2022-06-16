@@ -11,10 +11,10 @@ import java.util.List;
 public interface IMessageDao {
 
     @Query("SELECT * FROM Message")
-    List<Contact> getAllMessages();
+    List<Message> getAllMessages();
 
     @Query("SELECT * FROM Message WHERE id = :identity")
-    Contact getMessageById(int identity);
+    Message getMessageById(int identity);
 
     @Insert
     void insert(Message... message);

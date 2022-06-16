@@ -18,6 +18,9 @@ public class Message {
         this.sent = sent;
     }
 
+    public Message() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }

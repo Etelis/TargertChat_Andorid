@@ -1,8 +1,13 @@
 package com.example.targertchat.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+    @SerializedName("username")
     private String userName;
+    @SerializedName("displayName")
     private String displayName;
+    @SerializedName("photo")
     private String photo;
     private String token;
 
