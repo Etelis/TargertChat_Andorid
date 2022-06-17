@@ -15,7 +15,7 @@ public class ContactsViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(ContactsViewModel.class)) {
             return (T) new ContactsViewModel
-                    (ContactsRepository.getInstance(MainApplication.contactsApiManager));
+                    (ContactsRepository.getInstance());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

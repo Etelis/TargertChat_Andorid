@@ -53,6 +53,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             contactLayoutContainer.setOnClickListener(view -> {
                 Intent i = new Intent(new Intent(context, ChatActivity.class));
                 i.putExtra("id",tvId.getText().toString());
+                i.putExtra("name", tvTitle.getText().toString());
+                i.putExtra("img", imageView.toString());
                 ActivityOptions options = ActivityOptions
                         .makeSceneTransitionAnimation((Activity)context, view, "transition");
                 context.startActivity(i, options.toBundle());

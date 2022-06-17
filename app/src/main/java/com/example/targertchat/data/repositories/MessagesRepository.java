@@ -80,7 +80,9 @@ public class MessagesRepository {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {}
+            public void onFailure(Call<Void> call, Throwable t) {
+                messageSubmitted.postValue(false);
+            }
         });
     }
 

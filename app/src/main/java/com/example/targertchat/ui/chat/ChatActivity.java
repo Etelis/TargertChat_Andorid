@@ -3,16 +3,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.targertchat.MainApplication;
 import com.example.targertchat.R;
 import com.example.targertchat.data.model.Message;
@@ -26,6 +26,8 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ChatActivity extends AppCompatActivity {
 
     private ChatViewModel viewModel;
@@ -38,6 +40,11 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         String contactID = getIntent().getStringExtra("id");
         viewModel = new ChatViewModel(MessagesRepository.getInstance());
+
+        TextView tvName = findViewById(R.id.name);
+        tvName.setText(getIntent().getStringExtra("name"));
+        CircleImageView img = findViewById(R.id.img);
+
         viewModel.getMessagesFromApi(contactID);
         messagesRecycler = findViewById(R.id.message_list);
 

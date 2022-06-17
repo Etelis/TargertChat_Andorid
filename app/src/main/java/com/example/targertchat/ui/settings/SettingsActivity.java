@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.targertchat.MainApplication;
 import com.example.targertchat.R;
+import com.example.targertchat.data.model.LocalDatabase;
 import com.example.targertchat.data.utils.SessionManager;
 import com.example.targertchat.ui.MainActivity;
 
@@ -27,8 +29,12 @@ public class SettingsActivity extends AppCompatActivity {
         logoutBtn.setOnClickListener((View v) -> {
             SessionManager.getInstance(this).removeSession();
             Intent i = new Intent(this, MainActivity.class);
-            finishAffinity();
+            MainApplication.sessionManager.removeSession();
+            new Thread(() -> {
+                LocalDatabase.getInstance().clearAllTables();
+            });
             startActivity(i);
+            finishAffinity();
         });
     }
 }

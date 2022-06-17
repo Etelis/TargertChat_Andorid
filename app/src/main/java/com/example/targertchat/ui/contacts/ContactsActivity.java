@@ -15,9 +15,12 @@ import com.example.targertchat.R;
 import com.example.targertchat.data.utils.ContactResponse;
 import com.example.targertchat.ui.adapters.FragmentAdapter;
 import com.example.targertchat.ui.settings.SettingsActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class ContactsActivity extends AppCompatActivity {
 
@@ -97,5 +100,4 @@ public class ContactsActivity extends AppCompatActivity {
         addContactBtn.setOnClickListener(v -> dialog.show());
 
     }
-
 }

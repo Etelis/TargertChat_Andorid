@@ -3,8 +3,10 @@ package com.example.targertchat.ui.user;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +34,13 @@ public class RegisterActivity extends AppCompatActivity {
         verifyPasswordEdt = findViewById(R.id.verifyPassword_text);
         displayNameEdt = findViewById(R.id.displayName_text);
         registerBtn = findViewById(R.id.registerBtn);
+
+        TextView tv = findViewById(R.id.to_login);
+        tv.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         UserViewModel userViewModel = new ViewModelProvider
                 (this, new UserViewModelFactory()).get(UserViewModel.class);

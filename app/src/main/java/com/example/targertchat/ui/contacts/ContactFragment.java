@@ -64,11 +64,12 @@ public class ContactFragment extends Fragment {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+            viewModel.getContactsFromAPI();
             viewModel.getContacts().observe(getViewLifecycleOwner(), adapter::setContacts);
 
             swipeRefreshLayout.setOnRefreshListener(() -> {
                 adapter.clear();
-                viewModel.reload();
+                viewModel.getContacts();
                 new Handler().postDelayed(() -> swipeRefreshLayout.setRefreshing(false), 3000); // Delay in millis
             });
         }

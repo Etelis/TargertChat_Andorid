@@ -13,19 +13,20 @@ import java.util.List;
 public class ContactsViewModel extends ViewModel {
 
     private final ContactsRepository contactsRepository;
-    private final LiveData<List<Contact>> contacts;
     private final MutableLiveData<Boolean> checkContactSubmitted;
 
     public ContactsViewModel(ContactsRepository contactsRepository) {
         this.contactsRepository = contactsRepository;
         checkContactSubmitted = new MutableLiveData<>();
-        contacts = contactsRepository.getContacts();
     }
 
     public LiveData<List<Contact>> getContacts() {
-        return contacts;
+        return contactsRepository.getContacts();
     }
 
+    public void getContactsFromAPI() {
+        contactsRepository.getContactsAPI();
+    }
 
     public void addContact(ContactResponse contactResponse) {
         contactsRepository.addContact(contactResponse, checkContactSubmitted);
@@ -35,7 +36,4 @@ public class ContactsViewModel extends ViewModel {
         return checkContactSubmitted;
     }
 
-    public void reload (){
-        contactsRepository.reload();
-    }
 }

@@ -9,12 +9,38 @@
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10">
-        <com.google.android.material.tabs.TabLayout
+        android:weightSum="15">
+
+        <LinearLayout
             android:id="@+id/chat_contact_info"
             android:layout_width="match_parent"
-            android:layout_height="87dp"
-            android:background="@color/dark_sea"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            android:background="@color/dark_sea">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                android:paddingRight="10dp"
+                android:src="@drawable/profile" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/tvTime"
+                android:layout_toEndOf="@id/profile_image"
+                android:text="Robert Downey"
+                android:gravity="left|center"
+                android:textColor="@color/divider_light"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <androidx.core.widget.NestedScrollView
             android:layout_height="match_parent"
             android:layout_width="match_parent"

@@ -8,10 +8,10 @@ import com.example.targertchat.data.model.User;
 import com.google.gson.Gson;
 
 public class SessionManager {
+
     private final SharedPreferences prefs;
     private final String USER_PREFS = "user_prefs";
     private static SessionManager instance;
-
 
     private SessionManager(Context context) {
         this.prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
