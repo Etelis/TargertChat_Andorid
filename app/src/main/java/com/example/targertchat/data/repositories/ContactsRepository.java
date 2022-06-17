@@ -70,7 +70,7 @@ public class ContactsRepository {
     public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted) {
         ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, contactResponse.contactServer);
 
-        Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite);
+        Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite, "Bearer " + sessionManager.fetchAuthToken());
         inviteContactCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -94,7 +94,6 @@ public class ContactsRepository {
                 else
                     checkContactSubmitted.postValue(false);
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 checkContactSubmitted.postValue(false);

@@ -36,7 +36,4 @@ public class ChatViewModel extends ViewModel {
         return messageSubmitted;
     }
 
-    public void transferMessage(TransferMessage transferMessage) {
-        messagesRepository.transfer(transferMessage);
-    }
 }

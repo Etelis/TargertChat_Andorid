@@ -70,6 +70,7 @@ public class ChatActivity extends AppCompatActivity {
             if(input.getText().toString().equals("")) {
                 return;
             }
+
             ContentToPost content = new ContentToPost(input.getText().toString());
             viewModel.postMessage(getIntent().getStringExtra("id"), content);
             viewModel.isMessageSubmitted().observe(this, answer -> {
@@ -83,12 +84,6 @@ public class ChatActivity extends AppCompatActivity {
                             scrollview.fullScroll(NestedScrollView.FOCUS_DOWN);
                         }
                     }, 100);
-
-                    TransferMessage transferMessage = new TransferMessage(
-                            MainApplication.sessionManager.fetchSession().getUserName(),
-                            contactID, input.getText().toString());
-
-                    viewModel.transferMessage(transferMessage);
 
                     input.setText("");
                 }

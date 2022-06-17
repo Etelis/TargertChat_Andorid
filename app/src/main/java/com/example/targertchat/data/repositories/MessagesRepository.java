@@ -67,13 +67,32 @@ public class MessagesRepository {
     }
 
     public void postMessage(String contactID, ContentToPost content, MutableLiveData<Boolean> messageSubmitted) {
-        Call<Void> callback = webService.postMessage(contactID, content, "Bearer " + sessionManager.fetchAuthToken());
-        callback.enqueue(new Callback<Void>() {
+
+        TransferMessage transferMessage = new TransferMessage(
+                MainApplication.sessionManager.fetchSession().getUserName(),
+                contactID, content.getContent());
+        Call<Void> callBackTransfer = transferAPI.transfer(transferMessage, "Bearer " + sessionManager.fetchAuthToken());
+        callBackTransfer.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {
-                    messageSubmitted.postValue(true);
-                    apiCallAndPutInDB(contactID);
+                    Call<Void> callback = webService.postMessage(contactID, content, "Bearer " + sessionManager.fetchAuthToken());
+                    callback.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.isSuccessful()) {
+                                messageSubmitted.postValue(true);
+                                apiCallAndPutInDB(contactID);
+                            } else {
+                                messageSubmitted.postValue(false);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            messageSubmitted.postValue(false);
+                        }
+                    });
                 } else {
                     messageSubmitted.postValue(false);
                 }
@@ -84,9 +103,5 @@ public class MessagesRepository {
                 messageSubmitted.postValue(false);
             }
         });
-    }
-
-    public void transfer(TransferMessage transferMessage) {
-        transferAPI.transfer(transferMessage);
     }
 }
