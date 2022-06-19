@@ -62,7 +62,9 @@ public class ContactsRepository {
 
             @Override
             public void onFailure(Call<List<Contact>> call, Throwable t) {
-                dao.clear();
+                new Thread(() -> {
+                    dao.clear();
+                }).start();
             }
         });
     }

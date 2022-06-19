@@ -57,8 +57,7 @@
                 android:dividerHeight="10.0sp"
                 android:scrollbars="vertical"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.contacts.ChatActivity"
-                tools:listitem="@layout/sent_message_item" />
+                tools:context=".ui.contacts.ChatActivity"/>
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
@@ -77,6 +76,8 @@
                 android:inputType="text"
                 android:paddingHorizontal="10dp"
                 android:text=""
+                android:padding="7dp"
+                android:background="@drawable/sent_message_border"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
             <ImageButton
