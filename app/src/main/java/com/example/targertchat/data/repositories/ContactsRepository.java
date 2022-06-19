@@ -12,6 +12,7 @@ import com.example.targertchat.data.remote.IInviteAPI;
 import com.example.targertchat.data.remote.RetrofitService;
 import com.example.targertchat.data.utils.ContactInvite;
 import com.example.targertchat.data.utils.ContactResponse;
+import com.example.targertchat.data.utils.NotificationMessageUpdate;
 import com.example.targertchat.data.utils.SessionManager;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class ContactsRepository {
 
     public void getContactsAPI() {
         Call<List<Contact>> getContactsCall = service.getContacts("Bearer " + sessionManager.fetchAuthToken());
-        getContactsCall.enqueue(new Callback<List<Contact>>() {
+        getContactsCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 if (response.isSuccessful()) {
@@ -69,16 +70,28 @@ public class ContactsRepository {
         });
     }
 
+    public void updateContactOnNewMessage(NotificationMessageUpdate update){
+        new Thread(()-> {
+            Contact contact = dao.getContactByID(update.getContactID());
+            if (contact == null)
+                return;
+
+            contact.setLastMessage(update.getContent());
+            contact.setLastSeen(update.getDate());
+            dao.update(contact);
+        }).start();
+    }
+
     public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted) {
         ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, RetrofitService.DEFAULT_URL,contactResponse.contactServer);
 
         Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite, "Bearer " + sessionManager.fetchAuthToken());
-        inviteContactCall.enqueue(new Callback<Void>() {
+        inviteContactCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Call<Void> addContactCall = service.addContact(contactResponse, "Bearer " + sessionManager.fetchAuthToken());
-                    addContactCall.enqueue(new Callback<Void>() {
+                    addContactCall.enqueue(new Callback<>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful())
@@ -92,10 +105,10 @@ public class ContactsRepository {
                             checkContactSubmitted.postValue(false);
                         }
                     });
-                }
-                else
+                } else
                     checkContactSubmitted.postValue(false);
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 checkContactSubmitted.postValue(false);
@@ -104,8 +117,6 @@ public class ContactsRepository {
     }
 
     public void clear() {
-        new Thread(() -> {
-            dao.clear();
-        }).start();
+        new Thread(dao::clear).start();
     }
 }

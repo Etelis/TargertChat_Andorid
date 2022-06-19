@@ -11,8 +11,8 @@ import java.util.List;
 @Dao
 public interface IMessageDao {
 
-    @Query("SELECT * FROM Message")
-    LiveData<List<Message>> getAllMessages();
+    @Query("SELECT * FROM Message WHERE contactID = :contactID")
+    LiveData<List<Message>> getAllMessages(String contactID);
 
     @Query("SELECT * FROM Message WHERE id = :identity")
     Message getMessageById(int identity);
@@ -29,6 +29,6 @@ public interface IMessageDao {
     @Delete
     void delete(Message... messages);
 
-    @Query("DELETE FROM Message")
-    public void clear();
+    @Query("DELETE FROM Message WHERE contactID = :contactID")
+    public void clear(String contactID);
 }

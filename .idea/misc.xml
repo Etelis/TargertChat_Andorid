@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable-anydpi/exit_settings_btn.xml" value="0.1085" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable-anydpi/ic_action_addWhite.xml" value="0.339" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable-v24/contact_header_shape.xml" value="0.1085" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable-v24/ic_login_bk.xml" value="0.239" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable-v24/login_shape_bk.xml" value="0.238" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable/button.xml" value="0.238" />
@@ -12,7 +14,7 @@
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable/layout_textbox.xml" value="0.238" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout-v26/activity_register.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout-v28/activity_register.xml" value="0.228" />
-        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chat.xml" value="0.22" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chat.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chats.xml" value="0.21875" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contact_dialog.xml" value="0.2625053441641727" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contacts.xml" value="0.16666666666666666" />

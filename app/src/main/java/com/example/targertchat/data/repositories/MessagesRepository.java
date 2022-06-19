@@ -1,5 +1,8 @@
 package com.example.targertchat.data.repositories;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -42,26 +45,37 @@ public class MessagesRepository {
         return instance;
     }
 
-    public LiveData<List<Message>> getMessages() {
-        return dao.getAllMessages();
+    public LiveData<List<Message>> getMessages(String contactID) {
+        return dao.getAllMessages(contactID);
+    }
+
+    public void pushMessage(Message message) {
+        new Thread(() -> {
+           dao.insert(message);
+        }).start();
     }
 
     public void apiCallAndPutInDB (String contactID) {
         Call<List<Message>> getMessages = webService.getMessages(contactID, "Bearer " + sessionManager.fetchAuthToken());
         getMessages.enqueue(new Callback<List<Message>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 if (response.isSuccessful()) {
                     List<Message> messages = response.body();
+                    if (messages != null) {
+                        messages.forEach((message -> {
+                            message.setContactID(contactID);
+                        }));
+                    }
                     new Thread(() -> {
-                        dao.clear();
+                        dao.clear(contactID);
                         dao.insertAll(messages);
                     }).start();
                 }
             }
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
-                dao.clear();
             }
         });
     }
