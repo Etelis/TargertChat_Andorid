@@ -43,20 +43,24 @@
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
             android:id="@+id/scroll"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:layout_weight="9.8">
-            <androidx.recyclerview.widget.RecyclerView
-                xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="9.8"
+            android:scrollbarAlwaysDrawVerticalTrack="true">
+
+            <androidx.recyclerview.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/message_list"
-                android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10.0sp"
+                android:scrollbars="vertical"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.contacts.ChatActivity"/>
+                tools:context=".ui.contacts.ChatActivity"
+                tools:listitem="@layout/sent_message_item" />
         </androidx.core.widget.NestedScrollView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
