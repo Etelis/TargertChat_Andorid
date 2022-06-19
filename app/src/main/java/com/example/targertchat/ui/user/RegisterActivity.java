@@ -22,18 +22,11 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText userNameEdt, passwordEdt, verifyPasswordEdt, displayNameEdt;
-    private Button registerBtn;
-    private UsersRepository usersRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        userNameEdt = findViewById(R.id.uesrname_text);
-        passwordEdt = findViewById(R.id.password_text);
-        verifyPasswordEdt = findViewById(R.id.verifyPassword_text);
-        displayNameEdt = findViewById(R.id.displayName_text);
-        registerBtn = findViewById(R.id.registerBtn);
 
         TextView tv = findViewById(R.id.to_login);
         tv.setOnClickListener((View v) -> {
@@ -41,6 +34,12 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        userNameEdt = findViewById(R.id.uesrname_text);
+        passwordEdt = findViewById(R.id.password_text);
+        verifyPasswordEdt = findViewById(R.id.verifyPassword_text);
+        displayNameEdt = findViewById(R.id.displayName_text);
+        Button registerBtn = findViewById(R.id.registerBtn);
 
         UserViewModel userViewModel = new ViewModelProvider
                 (this, new UserViewModelFactory()).get(UserViewModel.class);

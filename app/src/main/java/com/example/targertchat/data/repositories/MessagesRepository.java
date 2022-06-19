@@ -78,6 +78,7 @@ public class MessagesRepository {
                 if(response.isSuccessful()) {
                     Call<Void> callback = webService.postMessage(contactID, content, "Bearer " + sessionManager.fetchAuthToken());
                     callback.enqueue(new Callback<Void>() {
+
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.isSuccessful()) {
