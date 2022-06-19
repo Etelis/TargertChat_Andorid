@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
+import com.example.targertchat.data.utils.LoginUser;
 import com.example.targertchat.data.model.User;
 import com.example.targertchat.data.utils.NotificationToken;
 import com.example.targertchat.data.utils.PostLoginUser;
@@ -32,13 +33,14 @@ public class UsersApiManager {
     }
 
     public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
-        Call<User> loginCall = service.login(loginUser);
-        loginCall.enqueue(new Callback<User>() {
+        Call<LoginUser> loginCall = service.login(loginUser);
+        loginCall.enqueue(new Callback<LoginUser>() {
             @Override
-            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+            public void onResponse(@NonNull Call<LoginUser> call, @NonNull Response<LoginUser> response) {
                 if (response.isSuccessful()) {
-                    User body = response.body();
-                    sessionManager.saveSession(body);
+                    LoginUser body = response.body();
+                    body.getUser().setToken(body.getToken());
+                    sessionManager.saveSession(body.getUser());
                     checkLoggedIn.postValue(true);
                 }
                 else {
@@ -48,7 +50,7 @@ public class UsersApiManager {
             }
 
             @Override
-            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<LoginUser> call, @NonNull Throwable t) {
                 sessionManager.removeSession();
                 checkLoggedIn.postValue(false);
             }
