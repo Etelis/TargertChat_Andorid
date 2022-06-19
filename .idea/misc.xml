@@ -12,7 +12,7 @@
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/drawable/layout_textbox.xml" value="0.238" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout-v26/activity_register.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout-v28/activity_register.xml" value="0.228" />
-        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chat.xml" value="0.4100327153762268" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chat.xml" value="0.22" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_chats.xml" value="0.21875" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contact_dialog.xml" value="0.2625053441641727" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/activity_contacts.xml" value="0.16666666666666666" />
@@ -27,6 +27,8 @@
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/fragment_add_contact_dialog.xml" value="0.2539546814878153" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/list_item_layout.xml" value="0.21467391304347827" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/profile_options.xml" value="0.2941427960666952" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/received_message_item.xml" value="0.22231722958529285" />
+        <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/layout/sent_message_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Eteli/AndroidStudioProjects/TargertChat/app/src/main/res/menu/mainscreen_menu.xml" value="0.2941427960666952" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/drawable-anydpi/settings_btn.xml" value="0.1435" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/drawable/button.xml" value="0.1435" />
