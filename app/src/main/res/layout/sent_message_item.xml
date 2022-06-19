@@ -37,6 +37,4 @@
         android:text="Wassup"
         android:textSize="16dp" />
 
-
-
 </RelativeLayout>

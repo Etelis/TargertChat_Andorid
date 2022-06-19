@@ -8,6 +8,6 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface IInviteAPI {
-    @POST("invite")
+    @POST("api/invite")
     Call<Void> inviteContact(@Body ContactInvite contactInvite, @Header("Authorization") String token);
 }

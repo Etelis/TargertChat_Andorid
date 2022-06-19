@@ -83,6 +83,15 @@ public class ContactsActivity extends AppCompatActivity {
                 Toast.makeText(ContactsActivity.this, "Fields cannot stay empty!", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (server.contains("http")){
+                Toast.makeText(ContactsActivity.this, "Server should not contain http/s prefix!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!server.contains(":")){
+                Toast.makeText(ContactsActivity.this, "Server should provide a port!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             ContactResponse contactResponse = new ContactResponse(userName, name, server);
             contactsViewModel.addContact(contactResponse);
             contactsViewModel.isContactSubmitted().observe(this, answerBoolean -> {
