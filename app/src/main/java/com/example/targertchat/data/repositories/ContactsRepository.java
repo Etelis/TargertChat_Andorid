@@ -68,7 +68,7 @@ public class ContactsRepository {
     }
 
     public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted) {
-        ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, contactResponse.contactServer);
+        ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, RetrofitService.DEFAULT_URL,contactResponse.contactServer);
 
         Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite, "Bearer " + sessionManager.fetchAuthToken());
         inviteContactCall.enqueue(new Callback<Void>() {
