@@ -14,7 +14,7 @@ public class ContactInvite {
     @Ignore
     public String toServer;
 
-    public ContactInvite(String fromUser, String toContact, String fromServer) {
+    public ContactInvite(String fromUser, String toContact, String fromServer, String toServer) {
         this.fromUser = fromUser;
         this.toContact = toContact;
         this.fromServer = fromServer;

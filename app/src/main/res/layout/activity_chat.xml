@@ -27,6 +27,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="6"
                 android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:src="@drawable/profile" />
 
             <TextView
