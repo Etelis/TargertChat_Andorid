@@ -26,7 +26,7 @@ public class MessagesRepository {
     private static ITransferAPI transferAPI;
     private static SessionManager sessionManager;
     private static volatile MessagesRepository instance;
-    private IMessageDao dao;
+    private final IMessageDao dao;
 
     private MessagesRepository() {
         webService = RetrofitService.createService(IMessageAPI.class);

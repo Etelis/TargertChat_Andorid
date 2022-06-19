@@ -29,11 +29,16 @@ public class ContactsViewModel extends ViewModel {
     }
 
     public void addContact(ContactResponse contactResponse) {
-        contactsRepository.addContact(contactResponse, checkContactSubmitted);
+            contactsRepository.addContact(contactResponse, checkContactSubmitted);
     }
 
     public LiveData<Boolean> isContactSubmitted() {
         return checkContactSubmitted;
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        contactsRepository.clear();
+    }
 }

@@ -12,6 +12,8 @@ import com.example.targertchat.R;
 import com.example.targertchat.data.model.LocalDatabase;
 import com.example.targertchat.data.utils.SessionManager;
 import com.example.targertchat.ui.MainActivity;
+import com.example.targertchat.ui.contacts.ContactFragment;
+import com.example.targertchat.ui.contacts.ContactsActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 

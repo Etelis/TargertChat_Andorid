@@ -100,4 +100,10 @@ public class ContactsRepository {
             }
         });
     }
+
+    public void clear() {
+        new Thread(() -> {
+            dao.clear();
+        }).start();
+    }
 }

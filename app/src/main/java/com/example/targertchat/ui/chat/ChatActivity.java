@@ -44,10 +44,10 @@ public class ChatActivity extends AppCompatActivity {
         TextView tvName = findViewById(R.id.name);
         tvName.setText(getIntent().getStringExtra("name"));
         CircleImageView img = findViewById(R.id.img);
+        //TODO set image
 
         viewModel.getMessagesFromApi(contactID);
         messagesRecycler = findViewById(R.id.message_list);
-
         viewModel.getMessages().observe(this, messageListVal -> {
             Collections.sort(messageListVal, (s1, s2) -> s1.getId() - s2.getId());
             messagesListAdapter = new MessagesListAdapter(this, messageListVal);
@@ -84,7 +84,6 @@ public class ChatActivity extends AppCompatActivity {
                             scrollview.fullScroll(NestedScrollView.FOCUS_DOWN);
                         }
                     }, 100);
-
                     input.setText("");
                 }
             });

@@ -36,4 +36,8 @@ public class ChatViewModel extends ViewModel {
         return messageSubmitted;
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
 }

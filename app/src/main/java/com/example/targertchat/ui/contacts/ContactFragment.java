@@ -69,7 +69,7 @@ public class ContactFragment extends Fragment {
 
             swipeRefreshLayout.setOnRefreshListener(() -> {
                 adapter.clear();
-                viewModel.getContacts();
+                adapter.notifyDataSetChanged();
                 new Handler().postDelayed(() -> swipeRefreshLayout.setRefreshing(false), 3000); // Delay in millis
             });
         }

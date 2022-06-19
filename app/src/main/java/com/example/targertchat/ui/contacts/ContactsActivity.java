@@ -19,8 +19,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 public class ContactsActivity extends AppCompatActivity {
 
@@ -89,7 +87,11 @@ public class ContactsActivity extends AppCompatActivity {
             contactsViewModel.addContact(contactResponse);
             contactsViewModel.isContactSubmitted().observe(this, answerBoolean -> {
                 if (answerBoolean) {
+                    contactUName.setText("");
+                    contactName.setText("");
+                    contactServer.setText("");
                     dialog.dismiss();
+                    contactsViewModel.getContactsFromAPI();
                 } else {
                     Toast.makeText(ContactsActivity.this, "Either contact exists or server is not responsive.", Toast.LENGTH_SHORT).show();
                 }
@@ -98,6 +100,5 @@ public class ContactsActivity extends AppCompatActivity {
         builder.setView(view);
         dialog = builder.create();
         addContactBtn.setOnClickListener(v -> dialog.show());
-
     }
 }
