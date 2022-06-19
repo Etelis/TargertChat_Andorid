@@ -6,7 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_space">
 
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="15">
@@ -16,9 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:weightSum="10"
+            android:background="@color/dark_sea"
             android:orientation="horizontal"
-            android:background="@color/dark_sea">
+            android:weightSum="10">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img"
@@ -26,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="6"
-                android:paddingRight="10dp"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:src="@drawable/profile" />
 
             <TextView
@@ -36,8 +38,8 @@
                 android:layout_height="match_parent"
                 android:layout_toStartOf="@id/tvTime"
                 android:layout_toEndOf="@id/profile_image"
-                android:text="Robert Downey"
                 android:gravity="left|center"
+                android:text="Robert Downey"
                 android:textColor="@color/divider_light"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -49,36 +51,35 @@
             android:layout_weight="9.8"
             android:scrollbarAlwaysDrawVerticalTrack="true">
 
-            <androidx.recyclerview.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/message_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10.0sp"
                 android:scrollbars="vertical"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.contacts.ChatActivity"
-                tools:listitem="@layout/sent_message_item" />
+                tools:context=".ui.contacts.ChatActivity" />
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:layout_weight="2"
+                android:background="@drawable/sent_message_border"
                 android:backgroundTint="@color/white"
                 android:ems="10"
                 android:hint="Write a message"
                 android:inputType="text"
-                android:paddingHorizontal="10dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
+
             <ImageButton
                 android:id="@+id/send_button"
                 android:layout_width="31dp"

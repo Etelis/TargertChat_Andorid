@@ -14,8 +14,8 @@ public interface IContactDao {
     @Query("SELECT * FROM contact")
     LiveData<List<Contact>> getAllContacts();
 
-    @Query("SELECT * FROM contact WHERE identity = :identity")
-    Contact getContactByID(int identity);
+    @Query("SELECT * FROM contact WHERE contactID = :contactID")
+    Contact getContactByID(String contactID);
 
     @Insert
     void insert(Contact... contacts);

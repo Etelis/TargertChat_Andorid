@@ -5,7 +5,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Contact.class, Message.class}, version = 7)
+@Database(entities = {Contact.class, Message.class}, version = 8)
 public abstract class LocalDatabase extends RoomDatabase{
     private static volatile LocalDatabase instance;
     private static final String DB_NAME = "LOCAL_DB";

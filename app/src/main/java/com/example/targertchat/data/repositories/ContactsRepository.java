@@ -12,6 +12,7 @@ import com.example.targertchat.data.remote.IInviteAPI;
 import com.example.targertchat.data.remote.RetrofitService;
 import com.example.targertchat.data.utils.ContactInvite;
 import com.example.targertchat.data.utils.ContactResponse;
+import com.example.targertchat.data.utils.NotificationMessageUpdate;
 import com.example.targertchat.data.utils.SessionManager;
 
 import java.util.List;
@@ -65,6 +66,18 @@ public class ContactsRepository {
                 dao.clear();
             }
         });
+    }
+
+    public void updateContactOnNewMessage(NotificationMessageUpdate update){
+        new Thread(()-> {
+            Contact contact = dao.getContactByID(update.getContactID());
+            if (contact == null)
+                return;
+
+            contact.setLastMessage(update.getContent());
+            contact.setLastSeen(update.getDate());
+            dao.update(contact);
+        }).start();
     }
 
     public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted) {
