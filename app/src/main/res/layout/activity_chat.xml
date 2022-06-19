@@ -57,7 +57,8 @@
                 android:dividerHeight="10.0sp"
                 android:scrollbars="vertical"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".ui.contacts.ChatActivity"/>
+                tools:context=".ui.contacts.ChatActivity"
+                tools:listitem="@layout/sent_message_item"/>
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout

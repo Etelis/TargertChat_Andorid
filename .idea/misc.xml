@@ -40,7 +40,7 @@
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_contacts.xml" value="0.22" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_login.xml" value="0.10666666666666667" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_main.xml" value="0.1546875" />
-        <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_register.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_settings.xml" value="0.165625" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/activity_splash_screen.xml" value="0.1546875" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/add_contact_dialog.xml" value="0.1546875" />
@@ -48,6 +48,7 @@
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/contact_item.xml" value="0.22" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/contact_item_list.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/contact_layout.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/dsa.xml" value="0.17447916666666666" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/message_border.xml" value="0.165625" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/message_item.xml" value="0.5" />
         <entry key="..\:/Users/orelb/StudioProjects/TargertChat_Andorid/app/src/main/res/layout/message_item_list.xml" value="0.17864583333333334" />

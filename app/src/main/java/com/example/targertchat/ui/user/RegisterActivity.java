@@ -2,6 +2,7 @@ package com.example.targertchat.ui.user;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
                 (this, new UserViewModelFactory()).get(UserViewModel.class);
 
 
+        imgBtnInit();
+
         registerBtn.setOnClickListener(v -> {
                 // on below line we are getting data from our edit text.
                 String userName = userNameEdt.getText().toString();
@@ -86,5 +89,16 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
             });
+        }
+
+        private void imgBtnInit() {
+            Button addImageBtn = findViewById(R.id.addImage);
+            addImageBtn.setOnClickListener( view -> {
+                        Intent imageBrowser = new Intent(Intent.ACTION_PICK,
+                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        imageBrowser.setType("image/*");
+                        startActivity(imageBrowser);
+                    }
+            );
         }
     }

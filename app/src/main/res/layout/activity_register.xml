@@ -9,6 +9,7 @@
 
     <FrameLayout
 
+
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -44,21 +45,15 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_gravity="top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gotham"
-                android:text="Register"
+                android:text="@string/register"
                 android:textColor="#ffffff"
                 android:textSize="32sp" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
-
 
     </LinearLayout>
 
@@ -76,6 +71,7 @@
         tools:ignore="SmallSp" />
 
     <LinearLayout
+
         android:id="@+id/testPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,23 +85,22 @@
 
     <LinearLayout
         android:id="@+id/buttonPanel"
-        android:paddingVertical="20dp"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/layout_bg"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="20dp">
 
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:fontStyle="normal"
+            android:text="USERNAME"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"
-            android:fontStyle="normal"
-            android:text="USERNAME">
-        </TextView>
+            android:textSize="12dp"></TextView>
 
         <EditText
             android:id="@+id/uesrname_text"
@@ -121,12 +116,11 @@
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:fontStyle="normal"
+            android:text="PASSWORD"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"
-            android:fontStyle="normal"
-            android:text="PASSWORD">
-        </TextView>
+            android:textSize="12dp"></TextView>
 
         <EditText
             android:id="@+id/password_text"
@@ -136,22 +130,21 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
-            android:padding="10dp"
             android:inputType="textPassword"
-            android:textColor="@color/white"
+            android:padding="10dp"
             android:textAllCaps="false"
-            tools:ignore="TextContrastCheck"/>
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck" />
 
 
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:fontStyle="normal"
+            android:text="VERIFY PASSWORD"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"
-            android:fontStyle="normal"
-            android:text="VERIFY PASSWORD">
-        </TextView>
+            android:textSize="12dp"></TextView>
 
 
         <EditText
@@ -162,20 +155,19 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
-            android:padding="10dp"
-            android:textColor="@color/white"
             android:inputType="textPassword"
-            android:textAllCaps="false" />
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <TextView
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:fontStyle="normal"
+            android:text="DISPLAY NAME"
             android:textAlignment="viewStart"
             android:textColor="#898a8c"
-            android:textSize="12dp"
-            android:fontStyle="normal"
-            android:text="DISPLAY NAME">
-        </TextView>
+            android:textSize="12dp"></TextView>
 
         <EditText
             android:id="@+id/displayName_text"
@@ -186,33 +178,48 @@
             android:background="@drawable/layout_textbox"
             android:fontFamily="@font/calibri"
             android:padding="10dp"
-            android:textColor="@color/white"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/imageLabel"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:fontStyle="normal"
+            android:text="UPLOAD IMAGE"
+            android:textAlignment="viewStart"
+            android:textColor="#898a8c"
+            android:textSize="12dp"></TextView>
+
+        <Button
+            android:id="@+id/addImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/image_btn"
+            android:textAlignment="viewEnd" />
 
         <TextView
             android:id="@+id/to_login"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:fontStyle="normal"
             android:text="Already have an account? Sign in"
             android:textAlignment="viewStart"
             android:textColor="@color/blue_me"
-            android:textSize="15dp"
-            android:clickable="true">
-        </TextView>
-
-
+            android:textSize="15dp"></TextView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerBtn"
-            android:layout_marginTop="20dp"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:fontFamily="@font/calibri"
             android:text="Register"
-            android:textColor="@color/white"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
