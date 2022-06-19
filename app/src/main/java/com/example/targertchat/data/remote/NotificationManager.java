@@ -8,7 +8,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.targertchat.R;
+import com.example.targertchat.data.model.Message;
 import com.example.targertchat.data.repositories.ContactsRepository;
+import com.example.targertchat.data.repositories.MessagesRepository;
 import com.example.targertchat.data.utils.NotificationMessageUpdate;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -40,6 +42,9 @@ public class NotificationManager extends FirebaseMessagingService {
             String created = messageRecived.getData().get("created");
             NotificationMessageUpdate notificationUpdate = new NotificationMessageUpdate(contactID, content, created);
             ContactsRepository.getInstance().updateContactOnNewMessage(notificationUpdate);
+
+            Message message = new Message(content, created, "true", contactID);
+            MessagesRepository.getInstance().pushMessage(message);
         }
     }
 

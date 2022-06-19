@@ -10,12 +10,13 @@ public class Message {
     private String content;
     private String created;
     private String sent;
+    private String contactID;
 
-    public Message(int id, String content, String created, String sent) {
-        this.id = id;
+    public Message(String content, String created, String sent, String contactID) {
         this.content = content;
         this.created = created;
         this.sent = sent;
+        this.contactID = contactID;
     }
 
     public Message() {
@@ -52,6 +53,14 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getContactID() {
+        return contactID;
+    }
+
+    public void setContactID(String contactID) {
+        this.contactID = contactID;
     }
 }
 

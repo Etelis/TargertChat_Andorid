@@ -49,7 +49,7 @@ public class ContactsRepository {
 
     public void getContactsAPI() {
         Call<List<Contact>> getContactsCall = service.getContacts("Bearer " + sessionManager.fetchAuthToken());
-        getContactsCall.enqueue(new Callback<List<Contact>>() {
+        getContactsCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 if (response.isSuccessful()) {
@@ -84,12 +84,12 @@ public class ContactsRepository {
         ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, RetrofitService.DEFAULT_URL,contactResponse.contactServer);
 
         Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite, "Bearer " + sessionManager.fetchAuthToken());
-        inviteContactCall.enqueue(new Callback<Void>() {
+        inviteContactCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Call<Void> addContactCall = service.addContact(contactResponse, "Bearer " + sessionManager.fetchAuthToken());
-                    addContactCall.enqueue(new Callback<Void>() {
+                    addContactCall.enqueue(new Callback<>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful())
@@ -103,10 +103,10 @@ public class ContactsRepository {
                             checkContactSubmitted.postValue(false);
                         }
                     });
-                }
-                else
+                } else
                     checkContactSubmitted.postValue(false);
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 checkContactSubmitted.postValue(false);
@@ -115,8 +115,6 @@ public class ContactsRepository {
     }
 
     public void clear() {
-        new Thread(() -> {
-            dao.clear();
-        }).start();
+        new Thread(dao::clear).start();
     }
 }
