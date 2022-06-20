@@ -49,7 +49,7 @@ public class MessagesRepository {
         return dao.getAllMessages(contactID);
     }
 
-    public void pushMessage(Message message) {
+    public void pushMessageToDAO(Message message) {
         new Thread(() -> {
            dao.insert(message);
         }).start();
