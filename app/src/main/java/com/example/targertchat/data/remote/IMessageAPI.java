@@ -1,6 +1,5 @@
 package com.example.targertchat.data.remote;
 
-import com.example.targertchat.data.model.Contact;
 import com.example.targertchat.data.model.Message;
 import com.example.targertchat.data.utils.ContentToPost;
 
@@ -15,6 +14,9 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
+/**
+ * Handle message requests from the API.
+ */
 public interface IMessageAPI {
     @GET("Contacts/{id}/messages")
     Call<List<Message>> getMessages(@Path("id") String id, @Header("Authorization") String token);

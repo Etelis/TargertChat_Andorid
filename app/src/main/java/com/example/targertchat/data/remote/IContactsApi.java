@@ -12,6 +12,9 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
+/**
+ * Handle contact API requests.
+ */
 public interface IContactsApi {
     @GET("Contacts")
     Call<List<Contact>> getContacts(@Header("Authorization") String token);

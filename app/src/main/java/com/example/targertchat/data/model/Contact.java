@@ -5,6 +5,10 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+
+/**
+ * Contact Entity class.
+ */
 @Entity
 public class Contact {
     @PrimaryKey(autoGenerate = true)

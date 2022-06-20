@@ -25,6 +25,10 @@ public class UsersApiManager {
         sessionManager = MainApplication.sessionManager;
     }
 
+    /**
+     * Singleton design pattern.
+     * @return - singleton UsersApiManager object.
+     */
     public static UsersApiManager getInstance() {
         if (apiManager == null) {
             apiManager = new UsersApiManager();
@@ -32,32 +36,45 @@ public class UsersApiManager {
         return apiManager;
     }
 
+    /**
+     * login - handle login request.
+     * @param loginUser - login user object format matchs API format.
+     * @param checkLoggedIn - Mutuable boolean to notify log in was successful.
+     */
     public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
         Call<LoginUser> loginCall = service.login(loginUser);
-        loginCall.enqueue(new Callback<LoginUser>() {
+        loginCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<LoginUser> call, @NonNull Response<LoginUser> response) {
                 if (response.isSuccessful()) {
+                    // Recive user, created new user Object and append token.
                     LoginUser body = response.body();
                     body.getUser().setToken(body.getToken());
+
+                    // update session manager with the new user,
                     sessionManager.saveSession(body.getUser());
+
+                    // update boolean mutable data.
                     checkLoggedIn.postValue(true);
-                }
-                else {
-                    sessionManager.removeSession();
-                    checkLoggedIn.postValue(false);
+
+                } else {
+                    // O.W notify operation failed.
+                    onFailure(call, new Exception(String.valueOf(response.code())));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginUser> call, @NonNull Throwable t) {
-                sessionManager.removeSession();
                 checkLoggedIn.postValue(false);
             }
         });
     }
 
-    public void notifyToken(NotificationToken notificationToken){
+    /**
+     * notifyFirebaseToServer - Send a POST request to the server notifying it with the Firebase provided token.
+     * @param notificationToken - Firebase token.
+     */
+    public void notifyFirebaseToServer(NotificationToken notificationToken){
         Call<Void> notifyCall = service.registerDevice("Bearer " + sessionManager.fetchAuthToken(), notificationToken);
         notifyCall.enqueue(new Callback<Void>() {
             @Override
@@ -70,20 +87,24 @@ public class UsersApiManager {
         });
     }
 
+    /**
+     * register - handle register request to server.
+     * @param registerUser - login user object format matchs API format.
+     * @param checkLoggedIn - Mutuable boolean to notify log in was successful.
+     */
     public void register(PostRegisterUser registerUser, MutableLiveData<Boolean> checkLoggedIn){
         Call<String> registerCall = service.register(registerUser);
-        registerCall.enqueue(new Callback<String>() {
+        registerCall.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.isSuccessful()) {
+                    // if request was successful, update session manager with the provided user.
                     String token = response.body();
                     User newUser = registerUser.CreateUserWithToken(token);
                     sessionManager.saveSession(newUser);
                     checkLoggedIn.postValue(true);
-                }
-                else {
-                    sessionManager.removeSession();
-                    checkLoggedIn.postValue(false);
+                } else {
+
                 }
             }
 

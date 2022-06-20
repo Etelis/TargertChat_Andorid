@@ -12,6 +12,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
+/**
+ * Handle user requests from the API.
+ */
 public interface IUsersApi {
     @POST("Users/login")
     Call<LoginUser> login(@Body PostLoginUser userLogin);

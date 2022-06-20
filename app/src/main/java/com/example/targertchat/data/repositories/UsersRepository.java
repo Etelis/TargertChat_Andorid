@@ -33,7 +33,7 @@ public class UsersRepository {
     }
 
     public void notifyToken(NotificationToken notificationToken){
-        this.usersApiManager.notifyToken(notificationToken);
+        this.usersApiManager.notifyFirebaseToServer(notificationToken);
     }
 
     public void register(PostRegisterUser registerUser, MutableLiveData<Boolean> checkLoggedIn) {
