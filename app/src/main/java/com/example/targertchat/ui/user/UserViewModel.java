@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.targertchat.data.repositories.UsersRepository;
-import com.example.targertchat.data.utils.NotificationToken;
-import com.example.targertchat.data.utils.PostLoginUser;
-import com.example.targertchat.data.utils.PostRegisterUser;
+import com.example.targertchat.data.utils.FirebaseToken;
+import com.example.targertchat.data.utils.LoginRequest;
+import com.example.targertchat.data.utils.RegisterRequest;
 
 public class UserViewModel extends ViewModel {
 
@@ -21,15 +21,15 @@ public class UserViewModel extends ViewModel {
         checkSessionLoggedIn = new MutableLiveData<>();
     }
 
-    public void notifyToken(NotificationToken notificationToken){
-        usersRepository.notifyToken(notificationToken);
+    public void notifyToken(FirebaseToken firebaseToken){
+        usersRepository.notifyToken(firebaseToken);
     }
 
-    public void login(PostLoginUser loginUser) {
+    public void login(LoginRequest loginUser) {
         usersRepository.login(loginUser, checkLoggedIn);
     }
 
-    public void register(PostRegisterUser registerUser) {
+    public void register(RegisterRequest registerUser) {
         usersRepository.register(registerUser, checkLoggedIn);
     }
 

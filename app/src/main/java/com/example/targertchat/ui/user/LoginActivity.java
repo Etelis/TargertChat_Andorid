@@ -11,53 +11,64 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.targertchat.R;
-import com.example.targertchat.data.utils.NotificationToken;
-import com.example.targertchat.data.utils.PostLoginUser;
+import com.example.targertchat.data.utils.FirebaseToken;
+import com.example.targertchat.data.utils.LoginRequest;
 import com.example.targertchat.ui.contacts.ContactsActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
-
     private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        TextView textView = findViewById(R.id.to_register);
+        Button loginButton = findViewById(R.id.login_button);
+
 
         userViewModel = new ViewModelProvider
                 (this, new UserViewModelFactory()).get(UserViewModel.class);
 
-        TextView tv = findViewById(R.id.to_register);
-        tv.setOnClickListener((View v) -> {
+
+        textView.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
             finish();
         });
 
-        Button loginButton = findViewById(R.id.login_button);
+        // Listen to login button.
         loginButton.setOnClickListener((View v) -> {
             EditText username = findViewById(R.id.uesrname_text);
             EditText password = findViewById(R.id.password_text);
+
+            // Check whether the user field is not empty.
             if (username.getText().toString().equals("")) {
                 Toast.makeText(LoginActivity.this, "Username is required!", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            // Check whether the password field fits the rules.
             if (password.getText().toString().equals("")) {
                 Toast.makeText(LoginActivity.this, "Password is required!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            PostLoginUser loginUser = new PostLoginUser(username.getText().toString(), password.getText().toString());
+            // create new login request to the server.
+            LoginRequest loginUser = new LoginRequest(username.getText().toString(), password.getText().toString());
             userViewModel.login(loginUser);
 
+            // observe on the response from the server.
             userViewModel.isLoggedIn().observe(this, answerBoolean -> {
                 if (answerBoolean) {
+                    // if connection was successful, update the server with Firebase notification token
                     FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginActivity.this, instanceIdResult -> {
                         String token = instanceIdResult.getToken();
-                        NotificationToken notificationToken = new NotificationToken(token);
-                        userViewModel.notifyToken(notificationToken);
+                        FirebaseToken firebaseToken = new FirebaseToken(token);
+                        userViewModel.notifyToken(firebaseToken);
                     });
+
+                    // Move to contact activity.
                     Intent intent = new Intent(this, ContactsActivity.class);
                     startActivity(intent);
                     finish();

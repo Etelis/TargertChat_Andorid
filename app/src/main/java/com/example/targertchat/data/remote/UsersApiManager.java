@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
-import com.example.targertchat.data.utils.LoginUser;
+import com.example.targertchat.data.utils.LoginResponse;
 import com.example.targertchat.data.model.User;
-import com.example.targertchat.data.utils.NotificationToken;
-import com.example.targertchat.data.utils.PostLoginUser;
-import com.example.targertchat.data.utils.PostRegisterUser;
+import com.example.targertchat.data.utils.FirebaseToken;
+import com.example.targertchat.data.utils.LoginRequest;
+import com.example.targertchat.data.utils.RegisterRequest;
 import com.example.targertchat.data.utils.SessionManager;
 
 import retrofit2.Call;
@@ -41,14 +41,14 @@ public class UsersApiManager {
      * @param loginUser - login user object format matchs API format.
      * @param checkLoggedIn - Mutuable boolean to notify log in was successful.
      */
-    public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
-        Call<LoginUser> loginCall = service.login(loginUser);
+    public void login(LoginRequest loginUser, MutableLiveData<Boolean> checkLoggedIn) {
+        Call<LoginResponse> loginCall = service.login(loginUser);
         loginCall.enqueue(new Callback<>() {
             @Override
-            public void onResponse(@NonNull Call<LoginUser> call, @NonNull Response<LoginUser> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
                     // Recive user, created new user Object and append token.
-                    LoginUser body = response.body();
+                    LoginResponse body = response.body();
                     body.getUser().setToken(body.getToken());
 
                     // update session manager with the new user,
@@ -64,7 +64,7 @@ public class UsersApiManager {
             }
 
             @Override
-            public void onFailure(@NonNull Call<LoginUser> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 checkLoggedIn.postValue(false);
             }
         });
@@ -72,10 +72,10 @@ public class UsersApiManager {
 
     /**
      * notifyFirebaseToServer - Send a POST request to the server notifying it with the Firebase provided token.
-     * @param notificationToken - Firebase token.
+     * @param firebaseToken - Firebase token.
      */
-    public void notifyFirebaseToServer(NotificationToken notificationToken){
-        Call<Void> notifyCall = service.registerDevice("Bearer " + sessionManager.fetchAuthToken(), notificationToken);
+    public void notifyFirebaseToServer(FirebaseToken firebaseToken){
+        Call<Void> notifyCall = service.registerDevice("Bearer " + sessionManager.fetchAuthToken(), firebaseToken);
         notifyCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
@@ -92,7 +92,7 @@ public class UsersApiManager {
      * @param registerUser - login user object format matchs API format.
      * @param checkLoggedIn - Mutuable boolean to notify log in was successful.
      */
-    public void register(PostRegisterUser registerUser, MutableLiveData<Boolean> checkLoggedIn){
+    public void register(RegisterRequest registerUser, MutableLiveData<Boolean> checkLoggedIn){
         Call<String> registerCall = service.register(registerUser);
         registerCall.enqueue(new Callback<>() {
             @Override
@@ -104,27 +104,33 @@ public class UsersApiManager {
                     sessionManager.saveSession(newUser);
                     checkLoggedIn.postValue(true);
                 } else {
-
+                    // O.W notify operation failed.
+                    onFailure(call, new Exception(String.valueOf(response.code())));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                sessionManager.removeSession();
                 checkLoggedIn.postValue(false);
             }
         });
     }
 
-    public void verifyToken(MutableLiveData<Boolean> checkSessionLoggedIn){
+    /**
+     * checkSessionConnected - check if the user has a valid session with the server.
+     * @param checkSessionLoggedIn - notify app if session still available.
+     */
+    public void checkSessionConnected(MutableLiveData<Boolean> checkSessionLoggedIn){
         Call<User> tokenCall = service.token("Bearer " + sessionManager.fetchAuthToken());
         tokenCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse( Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
+                    // retrieve JWT token from Session Manager
                     String token = sessionManager.fetchAuthToken();
                     User body = response.body();
 
+                    // Make sure a token was provided by the server.
                     if (body != null) {
                         body.setToken(token);
                     }
@@ -134,8 +140,8 @@ public class UsersApiManager {
                 }
 
                 if(response.code()>= 400 && response.code() < 599){
-                    sessionManager.removeSession();
-                    checkSessionLoggedIn.postValue(false);
+                    // O.W notify operation failed.
+                    onFailure(call, new Exception(String.valueOf(response.code())));
                 }
             }
 

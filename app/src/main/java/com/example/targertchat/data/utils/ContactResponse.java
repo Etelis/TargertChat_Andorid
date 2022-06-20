@@ -2,6 +2,9 @@ package com.example.targertchat.data.utils;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * ContactResponse - parameter passing for POST contact request.
+ */
 public class ContactResponse {
     @SerializedName("id")
     public String contactID;
@@ -20,11 +23,4 @@ public class ContactResponse {
         return contactID;
     }
 
-    public String getContactName() {
-        return contactName;
-    }
-
-    public String getContactServer() {
-        return contactServer;
-    }
 }

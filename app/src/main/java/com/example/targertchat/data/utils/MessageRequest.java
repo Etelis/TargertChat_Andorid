@@ -1,10 +1,10 @@
 package com.example.targertchat.data.utils;
 
-public class ContentToPost {
+public class MessageRequest {
     private String content;
 
 
-    public ContentToPost(String content) {
+    public MessageRequest(String content) {
         this.content = content;
     }
 

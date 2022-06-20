@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.targertchat.R;
 import com.example.targertchat.data.repositories.MessagesRepository;
-import com.example.targertchat.data.utils.ContentToPost;
+import com.example.targertchat.data.utils.MessageRequest;
 
 import java.util.Collections;
 
@@ -78,7 +78,7 @@ public class ChatActivity extends AppCompatActivity {
                 return;
             }
 
-            ContentToPost content = new ContentToPost(input.getText().toString());
+            MessageRequest content = new MessageRequest(input.getText().toString());
             viewModel.postMessage(getIntent().getStringExtra("id"), content);
             viewModel.isMessageSubmitted().observe(this, answer -> {
                 if(!answer) {

@@ -17,21 +17,27 @@ public class ContactsViewModel extends ViewModel {
 
     public ContactsViewModel(ContactsRepository contactsRepository) {
         this.contactsRepository = contactsRepository;
+
+        // MutableLiveData to notify activity server has added the contact.
         checkContactSubmitted = new MutableLiveData<>();
     }
 
+    // Get all contacts from the local DB
     public LiveData<List<Contact>> getContacts() {
         return contactsRepository.getContacts();
     }
 
+    // Fetch all contacts from the API
     public void getContactsFromAPI() {
         contactsRepository.getContactsAPI();
     }
 
+    // Add new contact to server, invite contact to char as well.
     public void addContact(ContactResponse contactResponse) {
             contactsRepository.addContact(contactResponse, checkContactSubmitted);
     }
 
+    // return live data notifying status of request.
     public LiveData<Boolean> isContactSubmitted() {
         return checkContactSubmitted;
     }
