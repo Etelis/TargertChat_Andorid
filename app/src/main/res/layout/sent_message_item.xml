@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/sent_time"
-        android:gravity="right"
+        android:gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sent_text"
@@ -34,13 +34,13 @@
             android:id="@+id/sent_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="left"
             android:minWidth="50dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
-            android:text="Wassup"
+            android:text="qsdajkdsakjsadsadsada"
             android:textSize="16dp" />
     </RelativeLayout>
 
