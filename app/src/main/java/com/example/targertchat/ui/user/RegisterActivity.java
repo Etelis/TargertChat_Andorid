@@ -19,9 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.targertchat.R;
-import com.example.targertchat.data.repositories.UsersRepository;
-import com.example.targertchat.data.utils.NotificationToken;
-import com.example.targertchat.data.utils.PostRegisterUser;
+import com.example.targertchat.data.utils.FirebaseToken;
+import com.example.targertchat.data.utils.RegisterRequest;
 import com.example.targertchat.ui.contacts.ContactsActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -105,14 +104,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Image is required!", Toast.LENGTH_SHORT).show();
                 }
 
-                PostRegisterUser registerUser = new PostRegisterUser(userName, password, displayName, img);
+                RegisterRequest registerUser = new RegisterRequest(userName, password, displayName, img);
 
                 userViewModel.register(registerUser);
                 userViewModel.isLoggedIn().observe(this, answerBoolean -> {
                     if (answerBoolean) {
                         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(RegisterActivity.this, instanceIdResult -> {
                             String token = instanceIdResult.getToken();
-                            NotificationToken notificationToken = new NotificationToken(token);
+                            FirebaseToken notificationToken = new FirebaseToken(token);
                             userViewModel.notifyToken(notificationToken);
                         });
 

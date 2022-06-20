@@ -13,7 +13,7 @@ import com.example.targertchat.data.model.Message;
 import com.example.targertchat.data.remote.IMessageAPI;
 import com.example.targertchat.data.remote.ITransferAPI;
 import com.example.targertchat.data.remote.RetrofitService;
-import com.example.targertchat.data.utils.ContentToPost;
+import com.example.targertchat.data.utils.MessageRequest;
 import com.example.targertchat.data.utils.SessionManager;
 import com.example.targertchat.data.utils.TransferMessage;
 
@@ -103,7 +103,7 @@ public class MessagesRepository {
      * @param content content of the message
      * @param messageSubmitted flag if the message was submitted
      */
-    public void postMessage(String contactID, ContentToPost content, MutableLiveData<Boolean> messageSubmitted) {
+    public void postMessage(String contactID, MessageRequest content, MutableLiveData<Boolean> messageSubmitted) {
 
         TransferMessage transferMessage = new TransferMessage(
                 MainApplication.sessionManager.fetchSession().getUserName(),

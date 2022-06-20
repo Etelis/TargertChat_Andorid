@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
-import com.example.targertchat.data.utils.LoginResponse;
 import com.example.targertchat.data.model.User;
 import com.example.targertchat.data.utils.FirebaseToken;
 import com.example.targertchat.data.utils.LoginRequest;
+import com.example.targertchat.data.utils.LoginResponse;
 import com.example.targertchat.data.utils.RegisterRequest;
 import com.example.targertchat.data.utils.SessionManager;
 
