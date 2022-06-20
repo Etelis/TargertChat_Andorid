@@ -1,11 +1,12 @@
 package com.example.targertchat.data.utils;
 
-public class NotificationMessageUpdate {
+//Login User - Firebase Notification parameters.
+public class FirebaseNotification {
     private String contactID;
     private String content;
     private String date;
 
-    public NotificationMessageUpdate(String contactID, String content, String date) {
+    public FirebaseNotification(String contactID, String content, String date) {
         this.contactID = contactID;
         this.content = content;
         this.date = date;

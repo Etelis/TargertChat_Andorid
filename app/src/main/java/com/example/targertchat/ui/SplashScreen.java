@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.targertchat.R;
-import com.example.targertchat.data.utils.NotificationToken;
+import com.example.targertchat.data.utils.FirebaseToken;
 import com.example.targertchat.ui.contacts.ContactsActivity;
 import com.example.targertchat.ui.user.UserViewModel;
 import com.example.targertchat.ui.user.UserViewModelFactory;
@@ -26,22 +26,30 @@ public class SplashScreen extends AppCompatActivity {
         userViewModel = new ViewModelProvider
                 (this, new UserViewModelFactory()).get(UserViewModel.class);
 
+        // Check if session stil valid.
         userViewModel.checkSession();
 
+        // handle animation
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         new Handler().postDelayed(this::checkIfUserIsAuthenticated, SPLASH_TIMER);
 
     }
 
+    /**
+     * Check if user's session is still valid
+     */
     private void checkIfUserIsAuthenticated() {
+
+        // Listen to the response from the server.
         userViewModel.isSessionLoggedIn().observe(this, aBoolean -> {
             Intent mainIntent;
+
+            // On succesful response from the server send Firebase token to server.
             if (aBoolean) {
                 FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SplashScreen.this, instanceIdResult -> {
                     String token = instanceIdResult.getToken();
-                    NotificationToken notificationToken = new NotificationToken(token);
-                    userViewModel.notifyToken(notificationToken);
+                    FirebaseToken firebaseToken = new FirebaseToken(token);
+                    userViewModel.notifyToken(firebaseToken);
                 });
                 mainIntent = new Intent(SplashScreen.this, ContactsActivity.class);
             } else {

@@ -34,7 +34,7 @@
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.contacts.ContactDialogActivity"
+            android:name=".ui.contacts.AddContactDialogActivity"
             android:exported="false" />
         <activity
             android:name=".ui.chat.ChatActivity"

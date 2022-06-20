@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.targertchat.MainApplication;
 import com.example.targertchat.data.remote.UsersApiManager;
-import com.example.targertchat.data.utils.NotificationToken;
-import com.example.targertchat.data.utils.PostLoginUser;
-import com.example.targertchat.data.utils.PostRegisterUser;
+import com.example.targertchat.data.utils.FirebaseToken;
+import com.example.targertchat.data.utils.LoginRequest;
+import com.example.targertchat.data.utils.RegisterRequest;
 import com.example.targertchat.data.utils.SessionManager;
 
 public class UsersRepository {
@@ -28,19 +28,19 @@ public class UsersRepository {
         return instance;
     }
 
-    public void login(PostLoginUser loginUser, MutableLiveData<Boolean> checkLoggedIn) {
+    public void login(LoginRequest loginUser, MutableLiveData<Boolean> checkLoggedIn) {
         this.usersApiManager.login(loginUser, checkLoggedIn);
     }
 
-    public void notifyToken(NotificationToken notificationToken){
-        this.usersApiManager.notifyFirebaseToServer(notificationToken);
+    public void notifyToken(FirebaseToken firebaseToken){
+        this.usersApiManager.notifyFirebaseToServer(firebaseToken);
     }
 
-    public void register(PostRegisterUser registerUser, MutableLiveData<Boolean> checkLoggedIn) {
+    public void register(RegisterRequest registerUser, MutableLiveData<Boolean> checkLoggedIn) {
         this.usersApiManager.register(registerUser, checkLoggedIn);
     }
 
     public void isSessionLoggedIn(MutableLiveData<Boolean> checkSessionLoggedIn){
-        this.usersApiManager.verifyToken(checkSessionLoggedIn);
+        this.usersApiManager.checkSessionConnected(checkSessionLoggedIn);
     }
 }

@@ -19,7 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.targertchat.R;
 import com.example.targertchat.data.model.Contact;
 import com.example.targertchat.ui.chat.ChatActivity;
-import com.example.targertchat.ui.contacts.ContactDialogActivity;
+import com.example.targertchat.ui.contacts.AddContactDialogActivity;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             });
 
             imageView.setOnClickListener(view -> {
-                Intent i = new Intent(new Intent(context, ContactDialogActivity.class));
+                Intent i = new Intent(new Intent(context, AddContactDialogActivity.class));
                 i.putExtra("url", contacts.get(getAdapterPosition()).getProfilePic());
                 ActivityOptions options = ActivityOptions
                         .makeSceneTransitionAnimation((Activity)context, view, "transition");

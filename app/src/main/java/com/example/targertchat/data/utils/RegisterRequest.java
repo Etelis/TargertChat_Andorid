@@ -3,7 +3,7 @@ package com.example.targertchat.data.utils;
 import com.example.targertchat.data.model.User;
 import com.google.gson.annotations.SerializedName;
 
-public class PostRegisterUser {
+public class RegisterRequest {
     @SerializedName("Username")
     private String UserName;
     @SerializedName("Password")
@@ -14,14 +14,14 @@ public class PostRegisterUser {
     private String Photo;
     private String token;
 
-    public PostRegisterUser(String userName, String password, String displayName, String photo) {
+    public RegisterRequest(String userName, String password, String displayName, String photo) {
         UserName = userName;
         Password = password;
         DisplayName = displayName;
         Photo = photo;
     }
 
-    public PostRegisterUser(String token) {
+    public RegisterRequest(String token) {
         this.token = token;
     }
 

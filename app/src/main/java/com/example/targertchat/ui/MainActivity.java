@@ -22,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.registerBtn);
         loginBtn = findViewById(R.id.loginBtn);
 
+        // Listen to register button.
         registerBtn.setOnClickListener(view -> {
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
             finish();
         });
 
+        // Listen to login button.
         loginBtn.setOnClickListener(view -> {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

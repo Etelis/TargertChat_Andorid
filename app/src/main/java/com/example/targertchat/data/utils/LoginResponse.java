@@ -1,49 +1,33 @@
 package com.example.targertchat.data.utils;
 
+import com.example.targertchat.data.model.User;
 import com.google.gson.annotations.SerializedName;
 
+// Login User - Login API request parameters.
 public class LoginResponse {
-    @SerializedName("UserId")
-    public String UserId;
-    @SerializedName("FirstName")
-    public String FirstName;
-    @SerializedName("LastName")
-    public String LastName;
-    @SerializedName("ProfilePicture")
-    public String ProfilePicture;
-    @SerializedName("Password")
-    public String Password;
-    @SerializedName("ResponseCode")
-    public String ResponseCode;
-    @SerializedName("ResponseMessage")
-    public String ResponseMessage;
+    @SerializedName("user")
+    private User user;
+    @SerializedName("token")
+    private String token;
 
-    public LoginResponse(String UserId, String Password) {
-        this.UserId = UserId;
-        this.Password = Password;
+    public LoginResponse(User user, String token) {
+        this.user = new User(user.getUserName(), user.getDisplayName(), user.getPhoto(), token);
+        this.token = token;
     }
 
-    public String getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public String getFirstName() {
-        return FirstName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getLastName() {
-        return LastName;
+    public String getToken() {
+        return token;
     }
 
-    public String getProfilePicture() {
-        return ProfilePicture;
-    }
-
-    public String getResponseCode() {
-        return ResponseCode;
-    }
-
-    public String getResponseMessage() {
-        return ResponseMessage;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

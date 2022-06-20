@@ -8,7 +8,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.targertchat.R;
 
-public class ContactDialogActivity extends Activity {
+/**
+ * Add Contact Dialog box.
+ */
+public class AddContactDialogActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

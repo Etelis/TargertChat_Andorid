@@ -10,9 +10,9 @@ import com.example.targertchat.data.model.LocalDatabase;
 import com.example.targertchat.data.remote.IContactsApi;
 import com.example.targertchat.data.remote.IInviteAPI;
 import com.example.targertchat.data.remote.RetrofitService;
-import com.example.targertchat.data.utils.ContactInvite;
+import com.example.targertchat.data.utils.InviteContact;
 import com.example.targertchat.data.utils.ContactResponse;
-import com.example.targertchat.data.utils.NotificationMessageUpdate;
+import com.example.targertchat.data.utils.FirebaseNotification;
 import com.example.targertchat.data.utils.SessionManager;
 
 import java.util.List;
@@ -70,7 +70,7 @@ public class ContactsRepository {
         });
     }
 
-    public void updateContactOnNewMessage(NotificationMessageUpdate update){
+    public void updateContactOnNewMessage(FirebaseNotification update){
         new Thread(()-> {
             Contact contact = dao.getContactByID(update.getContactID());
             if (contact == null)
@@ -83,7 +83,7 @@ public class ContactsRepository {
     }
 
     public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted) {
-        ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, RetrofitService.DEFAULT_URL,contactResponse.contactServer);
+        InviteContact contactInvite = new InviteContact(sessionManager.fetchSession().getUserName(), contactResponse.contactID, RetrofitService.DEFAULT_URL,contactResponse.contactServer);
 
         Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite, "Bearer " + sessionManager.fetchAuthToken());
         inviteContactCall.enqueue(new Callback<>() {

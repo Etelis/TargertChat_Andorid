@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.targertchat.data.model.Message;
 import com.example.targertchat.data.repositories.MessagesRepository;
-import com.example.targertchat.data.utils.ContentToPost;
+import com.example.targertchat.data.utils.MessageRequest;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ChatViewModel extends ViewModel {
         return messagesRepository.getMessages(contactID);
     }
 
-    public void postMessage(String id, ContentToPost content) {
+    public void postMessage(String id, MessageRequest content) {
         messagesRepository.postMessage(id, content, messageSubmitted);
     }
 

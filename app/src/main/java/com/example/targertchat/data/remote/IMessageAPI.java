@@ -1,7 +1,7 @@
 package com.example.targertchat.data.remote;
 
 import com.example.targertchat.data.model.Message;
-import com.example.targertchat.data.utils.ContentToPost;
+import com.example.targertchat.data.utils.MessageRequest;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public interface IMessageAPI {
     Call<List<Message>> getMessages(@Path("id") String id, @Header("Authorization") String token);
 
     @POST("Contacts/{id}/messages")
-    Call<Void> postMessage(@Path("id") String id, @Body ContentToPost content, @Header("Authorization") String token);
+    Call<Void> postMessage(@Path("id") String id, @Body MessageRequest content, @Header("Authorization") String token);
 
     @GET("Contacts/{id}/messages/{id2}")
     Call<Message> getMessageById(@Path("id") String id, @Path("id2") String id2, @Header("Authorization") String token);
