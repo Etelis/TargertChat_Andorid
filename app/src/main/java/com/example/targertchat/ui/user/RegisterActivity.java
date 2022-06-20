@@ -34,6 +34,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText userNameEdt, passwordEdt, verifyPasswordEdt, displayNameEdt;
     private String img;
+    private UserViewModel userViewModel;
+    private Button registerBtn;
+    private Button addImageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +54,22 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEdt = findViewById(R.id.password_text);
         verifyPasswordEdt = findViewById(R.id.verifyPassword_text);
         displayNameEdt = findViewById(R.id.displayName_text);
-        Button registerBtn = findViewById(R.id.registerBtn);
+        registerBtn = findViewById(R.id.registerBtn);
 
-        UserViewModel userViewModel = new ViewModelProvider
+        userViewModel = new ViewModelProvider
                 (this, new UserViewModelFactory()).get(UserViewModel.class);
 
 
         imgBtnInit();
 
-        registerBtn.setOnClickListener(v -> {
+        registerBtnInit();
+        }
+
+    /**
+     * initalizes the functionality of the register button
+     */
+    private void registerBtnInit() {
+            registerBtn.setOnClickListener(v -> {
                 // on below line we are getting data from our edit text.
                 String userName = userNameEdt.getText().toString();
                 String password = passwordEdt.getText().toString();
@@ -99,24 +109,27 @@ public class RegisterActivity extends AppCompatActivity {
 
                 userViewModel.register(registerUser);
                 userViewModel.isLoggedIn().observe(this, answerBoolean -> {
-                if (answerBoolean) {
-                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(RegisterActivity.this, instanceIdResult -> {
-                        String token = instanceIdResult.getToken();
-                        NotificationToken notificationToken = new NotificationToken(token);
-                        userViewModel.notifyToken(notificationToken);
-                    });
+                    if (answerBoolean) {
+                        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(RegisterActivity.this, instanceIdResult -> {
+                            String token = instanceIdResult.getToken();
+                            NotificationToken notificationToken = new NotificationToken(token);
+                            userViewModel.notifyToken(notificationToken);
+                        });
 
-                    Intent intent = new Intent(this, ContactsActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Either user exists or server is not responsive.", Toast.LENGTH_SHORT).show();
-                }
-            });
+                        Intent intent = new Intent(this, ContactsActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Either user exists or server is not responsive.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             });
         }
 
-        private void imgBtnInit() {
+    /**
+     * initializes the functionality of the upload image button
+     */
+    private void imgBtnInit() {
             ActivityResultLauncher<Intent> imgLauncher =
                     registerForActivityResult(
                             new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -140,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             });
 
-            Button addImageBtn = findViewById(R.id.addImage);
+            addImageBtn = findViewById(R.id.addImage);
             addImageBtn.setOnClickListener( view -> {
                         Intent imageBrowser = new Intent(Intent.ACTION_PICK,
                                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

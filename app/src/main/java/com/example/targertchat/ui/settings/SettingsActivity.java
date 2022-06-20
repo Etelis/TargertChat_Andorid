@@ -20,15 +20,44 @@ import com.example.targertchat.ui.contacts.ContactsActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private Button logoutBtn, exitBtn, updateServerBtn;
+    private EditText serverTxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        Button exitBtn = findViewById(R.id.exit_settings_btn);
-        Button updateServerBtn = findViewById(R.id.update_server_btn);
-        EditText serverTxt = findViewById(R.id.server_update);
+        exitBtn = findViewById(R.id.exit_settings_btn);
+        updateServerBtn = findViewById(R.id.update_server_btn);
+        serverTxt = findViewById(R.id.server_update);
 
 
+        initUpdateServerBtn();
+
+        initLogoutBtn();
+    }
+
+    /**
+     * initalizes the functionality of the logout button
+     */
+    private void initLogoutBtn() {
+        logoutBtn = findViewById(R.id.logout_btn);
+        logoutBtn.setOnClickListener((View v) -> {
+            SessionManager.getInstance(this).removeSession();
+            Intent i = new Intent(this, MainActivity.class);
+            MainApplication.sessionManager.removeSession();
+            new Thread(() -> {
+                LocalDatabase.getInstance().clearAllTables();
+            });
+            startActivity(i);
+            finishAffinity();
+        });
+    }
+
+    /**
+     * initializes the functionality the update server button
+     */
+    private void initUpdateServerBtn() {
         updateServerBtn.setOnClickListener(v -> {
             if (serverTxt.getText().toString().equals("")) {
                 Toast.makeText(SettingsActivity.this, "Server field cannot be empty!", Toast.LENGTH_SHORT).show();
@@ -50,18 +79,6 @@ public class SettingsActivity extends AppCompatActivity {
         });
         exitBtn.setOnClickListener(v -> {
             finish();
-        });
-
-        Button logoutBtn = findViewById(R.id.logout_btn);
-        logoutBtn.setOnClickListener((View v) -> {
-            SessionManager.getInstance(this).removeSession();
-            Intent i = new Intent(this, MainActivity.class);
-            MainApplication.sessionManager.removeSession();
-            new Thread(() -> {
-                LocalDatabase.getInstance().clearAllTables();
-            });
-            startActivity(i);
-            finishAffinity();
         });
     }
 }

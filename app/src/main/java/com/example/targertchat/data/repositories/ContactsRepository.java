@@ -36,6 +36,10 @@ public class ContactsRepository {
         service = RetrofitService.createService(IContactsApi.class);
     }
 
+    /**
+     * gets instance of the contacts repository
+     * @return ContactRepository
+     */
     public static ContactsRepository getInstance() {
         if (instance == null) {
             instance = new ContactsRepository();
@@ -43,13 +47,20 @@ public class ContactsRepository {
         return instance;
     }
 
+    /**
+     * retrieves all contacts
+     * @return LiveData<List<Contact>
+     */
     public LiveData<List<Contact>> getContacts(){
         return dao.getAllContacts();
     }
 
+    /**
+     * retrieves all contacts of the user from the server
+     */
     public void getContactsAPI() {
         Call<List<Contact>> getContactsCall = service.getContacts("Bearer " + sessionManager.fetchAuthToken());
-        getContactsCall.enqueue(new Callback<>() {
+        getContactsCall.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 if (response.isSuccessful()) {
@@ -70,6 +81,10 @@ public class ContactsRepository {
         });
     }
 
+    /**
+     * updates a contact of the user about a new message
+     * @param update The notification of the new message
+     */
     public void updateContactOnNewMessage(NotificationMessageUpdate update){
         new Thread(()-> {
             Contact contact = dao.getContactByID(update.getContactID());
@@ -82,16 +97,21 @@ public class ContactsRepository {
         }).start();
     }
 
+    /**
+     * adds a new contact
+     * @param contactResponse the new contact data
+     * @param checkContactSubmitted MutableLiveData<Boolean> flag about submission of the contact
+     */
     public void addContact(ContactResponse contactResponse, MutableLiveData<Boolean> checkContactSubmitted) {
         ContactInvite contactInvite = new ContactInvite(sessionManager.fetchSession().getUserName(), contactResponse.contactID, RetrofitService.DEFAULT_URL,contactResponse.contactServer);
 
         Call<Void> inviteContactCall = RetrofitService.createService(IInviteAPI.class, contactInvite.toServer).inviteContact(contactInvite, "Bearer " + sessionManager.fetchAuthToken());
-        inviteContactCall.enqueue(new Callback<>() {
+        inviteContactCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Call<Void> addContactCall = service.addContact(contactResponse, "Bearer " + sessionManager.fetchAuthToken());
-                    addContactCall.enqueue(new Callback<>() {
+                    addContactCall.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful())
@@ -116,6 +136,9 @@ public class ContactsRepository {
         });
     }
 
+    /**
+     * clears the database of contacts
+     */
     public void clear() {
         new Thread(dao::clear).start();
     }

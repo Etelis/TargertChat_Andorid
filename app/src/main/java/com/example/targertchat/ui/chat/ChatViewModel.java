@@ -20,18 +20,36 @@ public class ChatViewModel extends ViewModel {
         messageSubmitted = new MutableLiveData<>();
     }
 
+    /**
+     * retrieves the messages with the contact from the server and puts the in the db
+     * @param contactID
+     */
     public void getMessagesFromApi(String contactID) {
         messagesRepository.apiCallAndPutInDB(contactID);
     }
 
+    /**
+     * gets the messages with the contact from the database
+     * @param contactID
+     * @return list of messages with the contact
+     */
     public LiveData<List<Message>> getMessages(String contactID) {
         return messagesRepository.getMessages(contactID);
     }
 
+    /**
+     * posts the message to the user and transfer it to the contact
+     * @param id
+     * @param content
+     */
     public void postMessage(String id, ContentToPost content) {
         messagesRepository.postMessage(id, content, messageSubmitted);
     }
 
+    /**
+     * checks if the message has been submitted successfully
+     * @return
+     */
     public LiveData<Boolean> isMessageSubmitted() {
         return messageSubmitted;
     }

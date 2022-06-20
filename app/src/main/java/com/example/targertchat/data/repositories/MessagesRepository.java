@@ -38,6 +38,10 @@ public class MessagesRepository {
         dao = LocalDatabase.getInstance().messageDao();
     }
 
+    /**
+     * gets an instance of message repository
+     * @return MessageRepository
+     */
     public static MessagesRepository getInstance() {
         if (instance == null) {
             instance = new MessagesRepository();
@@ -45,16 +49,29 @@ public class MessagesRepository {
         return instance;
     }
 
+    /**
+     * gets the messages of the contact
+     * @param contactID
+     * @return LiveData<List<Messages>> list of messages
+     */
     public LiveData<List<Message>> getMessages(String contactID) {
         return dao.getAllMessages(contactID);
     }
 
+    /**
+     * inserts the message to the local database
+     * @param message the message to insert
+     */
     public void pushMessageToDAO(Message message) {
         new Thread(() -> {
            dao.insert(message);
         }).start();
     }
 
+    /**
+     * retrieves all the messages with the contact and put in the db
+     * @param contactID
+     */
     public void apiCallAndPutInDB (String contactID) {
         Call<List<Message>> getMessages = webService.getMessages(contactID, "Bearer " + sessionManager.fetchAuthToken());
         getMessages.enqueue(new Callback<List<Message>>() {
@@ -80,6 +97,12 @@ public class MessagesRepository {
         });
     }
 
+    /**
+     * post  the message to the user and transfer the message to the contact
+     * @param contactID
+     * @param content content of the message
+     * @param messageSubmitted flag if the message was submitted
+     */
     public void postMessage(String contactID, ContentToPost content, MutableLiveData<Boolean> messageSubmitted) {
 
         TransferMessage transferMessage = new TransferMessage(

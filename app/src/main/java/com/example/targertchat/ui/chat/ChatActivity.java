@@ -26,21 +26,29 @@ public class ChatActivity extends AppCompatActivity {
     private ChatViewModel viewModel;
     private RecyclerView messagesRecycler;
     private MessagesListAdapter messagesListAdapter;
+    private NestedScrollView scrollview;
+    private String contactID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        String contactID = getIntent().getStringExtra("id");
+        contactID = getIntent().getStringExtra("id");
         viewModel = new ChatViewModel(MessagesRepository.getInstance());
 
         TextView tvName = findViewById(R.id.name);
         tvName.setText(getIntent().getStringExtra("name"));
-        CircleImageView img = findViewById(R.id.img);
-        //TODO set image
 
+        initMessages();
 
-        final NestedScrollView scrollview = findViewById(R.id.scroll);
+        initSendBtn();
+    }
+
+    /**
+     * initializes the messages with the recycler view according to the contact's id
+     */
+    private void initMessages() {
+        scrollview = findViewById(R.id.scroll);
         scrollview.postDelayed(() -> scrollview.fullScroll(NestedScrollView.FOCUS_DOWN), 100);
 
         viewModel.getMessagesFromApi(contactID);
@@ -57,9 +65,12 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }, 100);
         });
+    }
 
-
-
+    /**
+     * initializes the send button functionality
+     */
+    private void initSendBtn() {
         ImageButton sendBtn = findViewById(R.id.send_button);
         EditText input = findViewById(R.id.input);
         sendBtn.setOnClickListener((View v) -> {
@@ -83,6 +94,6 @@ public class ChatActivity extends AppCompatActivity {
                     input.setText("");
                 }
             });
-;        });
+        });
     }
 }
